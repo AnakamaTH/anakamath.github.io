@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
 :root {
   --bg-light: linear-gradient(135deg, #a8ff78, #78ffd6);
   --bg-dark: linear-gradient(135deg, #0f4037, #093028);
@@ -16,7 +18,7 @@
 }
 
 body {
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Inter', sans-serif;
   background: var(--bg-light);
   color: var(--text-light);
   line-height: 1.6;
@@ -40,7 +42,7 @@ header {
 
 .logo {
   font-size: 1.5rem;
-  font-weight: bold;
+  font-weight: 700;
   color: var(--accent);
 }
 
@@ -48,7 +50,7 @@ nav a {
   color: #fff;
   margin-left: 1.5rem;
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
   transition: opacity 0.2s;
 }
 
@@ -104,7 +106,7 @@ footer {
   padding: 0.4rem 0.8rem;
   border-radius: 8px;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 700;
   transition: background var(--transition-speed), color var(--transition-speed);
 }
 
