@@ -93,3 +93,64 @@ body {
   from { opacity: 0; }
   to { opacity: 1; }
 }
+
+body.dark {
+  background-color: #111;
+  color: #eee;
+}
+
+body.dark .overlay {
+  opacity: 0.2;
+}
+
+body.dark button {
+  background-color: #222;
+  color: #fff;
+  border-color: #aaa;
+}
+
+body.dark .usage {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.tools-redirect {
+  padding: 2rem;
+  text-align: center;
+}
+
+.tools-redirect h1 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.tool-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.tool-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid white;
+  padding: 1rem 2rem;
+  width: 250px;
+  text-decoration: none;
+  color: white;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.tool-card:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-4px);
+}
+
+.tool-card h2 {
+  margin: 0.5rem 0;
+  font-size: 1.25rem;
+}
+
+.tool-card p {
+  font-size: 0.875rem;
+  opacity: 0.8;
+}

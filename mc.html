@@ -5,32 +5,50 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Anakama</title>
   <link rel="icon" href="favicon.png" type="image/png" />
-  
+
   <!-- Social Media Meta -->
   <meta property="og:title" content="Anakama Website / Minecraft Tools" />
   <meta property="og:description" content="AnakamaTheHedgehog Website" />
   <meta property="og:image" content="favicon.png" />
   <meta property="og:url" content="https://anakamath.github.io/" />
-  <meta name="twitter:card" content="favicon.png" />
-  
+  <meta name="twitter:card" content="summary_large_image" />
+
   <link rel="stylesheet" href="mc.css" />
 </head>
 <body>
+  <div class="overlay"></div>
+
   <header>
-    <div class="logo">Anakama</div>
+    <div class="logo">Minecraft Tools</div>
     <nav>
       <a href="index.html">Main</a>
       <a href="projects.html">Projects</a>
       <a href="socials.html">Socials</a>
-	  <a href="mc.html">Minecraft Tools</a>
+      <a href="mc.html">Minecraft Tools</a>
     </nav>
     <button id="theme-toggle">Toggle Theme</button>
   </header>
-  
+
+<main class="tools-redirect">
+  <h1>Minecraft Tools</h1>
+  <div class="tool-links">
+    <a href="https://anakamath.github.io/mcskinart" class="tool-card" target="_blank">
+      <h2>SkinArt Generator</h2>
+      <p>Create pixel-perfect NameMC SkinArt from your art!</p>
+    </a>
+
+    <a href="https://anakamath.github.io/mcskinconverter/" class="tool-card" target="_blank">
+      <h2>Map Converter</h2>
+      <p>Convert 64x32 MC Skins to 64x64 (kinda buggy)</p>
+    </a>
+  </div>
+</main>
+
+
   <footer>
     <p>&copy; 2025 Anakama — All rights reserved.</p>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="mc.js"></script>
 </body>
 </html>

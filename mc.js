@@ -1,4 +1,3 @@
-
 const gifs = [
   "https://pa1.aminoapps.com/5845/5749d2581b8ff83d442fbee9935fcbc5f0715067_hq.gif",
   "https://pa1.aminoapps.com/5845/9cb2168430d3538abdda1ce6676bf3c37f517369_hq.gif",
@@ -12,7 +11,7 @@ const gifs = [
   "https://i.gifer.com/1toU.gif"
 ];
 
-// Shuffle helper
+// Shuffle GIF list
 function shuffleArray(arr) {
   for (let i = arr.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -21,7 +20,7 @@ function shuffleArray(arr) {
   return arr;
 }
 
-// Store shuffled list in sessionStorage
+// Manage gif queue
 if (!sessionStorage.getItem('gifQueue') || JSON.parse(sessionStorage.getItem('gifQueue')).length === 0) {
   sessionStorage.setItem('gifQueue', JSON.stringify(shuffleArray([...gifs])));
 }
@@ -29,9 +28,10 @@ if (!sessionStorage.getItem('gifQueue') || JSON.parse(sessionStorage.getItem('gi
 const gifQueue = JSON.parse(sessionStorage.getItem('gifQueue'));
 const nextGif = gifQueue.shift();
 sessionStorage.setItem('gifQueue', JSON.stringify(gifQueue));
+
 document.querySelector(".overlay").style.backgroundImage = `url('${nextGif}')`;
 
-// Theme toggle logic
+// Theme toggling
 const toggleBtn = document.getElementById("theme-toggle");
 
 function setTheme(dark) {
@@ -44,7 +44,6 @@ toggleBtn.addEventListener("click", () => {
   setTheme(!isDark);
 });
 
-// Load saved theme on page load
 window.addEventListener("DOMContentLoaded", () => {
   const prefersDark = localStorage.getItem("darkMode") === "true";
   setTheme(prefersDark);
