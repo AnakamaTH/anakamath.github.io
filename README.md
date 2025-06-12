@@ -1,2 +1,2 @@
-# anakamath.github.io
+# Web
 "I wont pay github pro for closed source"
