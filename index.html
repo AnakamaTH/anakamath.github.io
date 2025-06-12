@@ -5,39 +5,65 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Anakama</title>
   <link rel="icon" href="favicon.png" type="image/png" />
-  
+
   <!-- Social Media Meta -->
   <meta property="og:title" content="Anakama Website / Main Page" />
   <meta property="og:description" content="AnakamaTheHedgehog Website" />
   <meta property="og:image" content="favicon.png" />
   <meta property="og:url" content="https://anakamath.github.io/" />
   <meta name="twitter:card" content="favicon.png" />
-  
+
   <link rel="stylesheet" href="style.css" />
+  <script src="https://unpkg.com/skinview3d/bundles/skinview3d.min.js"></script>
 </head>
 <body>
   <header>
     <div class="logo">Anakama</div>
     <nav>
-	  <a href="" aria-current="page">Main</a>
+      <a href="" aria-current="page">Main</a>
       <a href="projects.html">Projects</a>
       <a href="socials.html">Socials</a>
-	  <a href="mc.html">Minecraft Tools</a>
+      <a href="mc.html">Minecraft Tools</a>
     </nav>
     <button id="theme-toggle">Toggle Theme</button>
   </header>
 
   <main>
+    <!-- Intro -->
     <section id="about">
       <h1>Welcome!</h1>
       <p>I am Anakama (AnakamaTheHedgehog), and this is my main website where you can access all my social platform links and projects!</p>
     </section>
-  </main>
 
-  <footer>
-    <p>&copy; 2025 Anakama — All rights reserved.</p>
-  </footer>
+    <!-- Call to Action Buttons -->
+    <section id="cta" style="text-align: center; margin-top: 2rem;">
+      <a href="projects.html" class="cta-btn">See My Projects</a>
+      <a href="socials.html" class="cta-btn">Follow Me Online</a>
+      <a href="mc.html" class="cta-btn">Try My Minecraft Tools</a>
+    </section>
 
-  <script src="script.js"></script>
-</body>
-</html>
+  <!-- Minecraft Skin Viewer -->
+  <section id="skin-preview" style="margin-top: 3rem; text-align: center;">
+    <h2>My Minecraft Skin</h2>
+    <div id="skin_container" style="width: 300px; height: 400px; margin: auto;"></div>
+  </section>
+</main> <!-- ✅ This closing tag was missing -->
+
+<footer>
+  <p>&copy; 2025 Anakama — All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+<script>
+  // Init 3D Minecraft skin viewer
+  const viewer = new skinview3d.SkinViewer({
+    canvas: document.getElementById("skin_container"),
+    width: 300,
+    height: 400,
+    skin: "https://crafatar.com/skins/AnakamaTH"
+  });
+  viewer.controls.enableZoom = false;
+  viewer.animation = new skinview3d.WalkingAnimation();
+  viewer.animation.speed = 1;
+</script>
+
