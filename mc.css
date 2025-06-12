@@ -1,13 +1,19 @@
 @import url('https://fonts.cdnfonts.com/css/minecraftia');
 
-body {
+body.mc-theme {
   margin: 0;
-  font-family: 'Minecraftia', sans-serif;
+  font-family: 'Minecraftia', monospace, sans-serif;
   background: #000;
   color: white;
   text-align: center;
   position: relative;
   overflow-x: hidden;
+  transition: background 0.4s, color 0.4s;
+}
+
+body.mc-theme.dark {
+  background: linear-gradient(135deg, #003300, #001a00);
+  color: #aaffaa;
 }
 
 .overlay {
@@ -32,6 +38,12 @@ header, footer {
   padding: 1rem 2rem;
   background: transparent;
   color: white;
+  transition: color 0.4s;
+}
+
+body.mc-theme.dark header,
+body.mc-theme.dark footer {
+  color: #aaffaa;
 }
 
 header {
@@ -44,6 +56,7 @@ header {
   font-weight: bold;
   font-size: 1.5rem;
   user-select: none;
+  color: inherit;
 }
 
 nav a {
@@ -54,8 +67,16 @@ nav a {
   transition: color 0.3s ease;
 }
 
+body.mc-theme.dark nav a {
+  color: #aaffaa;
+}
+
 nav a:hover {
-  color: #55aa55; /* subtle green hover */
+  color: #55aa55;
+}
+
+body.mc-theme.dark nav a:hover {
+  color: #77cc77;
 }
 
 button#theme-toggle {
@@ -66,6 +87,13 @@ button#theme-toggle {
   cursor: pointer;
   border-radius: 5px;
   transition: background-color 0.3s ease;
+  font-family: 'Minecraftia', monospace;
+  user-select: none;
+}
+
+body.mc-theme.dark button#theme-toggle {
+  border-color: #aaffaa;
+  color: #aaffaa;
 }
 
 button#theme-toggle:hover {
@@ -74,37 +102,19 @@ button#theme-toggle:hover {
   color: #000;
 }
 
+body.mc-theme.dark button#theme-toggle:hover {
+  background-color: #77cc77;
+  border-color: #77cc77;
+  color: #001a00;
+}
+
 footer p {
   font-size: 0.9rem;
   opacity: 0.6;
   margin: 0;
 }
 
-/* Dark mode */
-body.dark {
-  background: linear-gradient(135deg, #003300, #001a00);
-  color: #aaffaa;
-}
-
-body.dark nav a {
-  color: #aaffaa;
-}
-
-body.dark nav a:hover {
-  color: #77cc77;
-}
-
-body.dark button#theme-toggle {
-  border-color: #aaffaa;
-  color: #aaffaa;
-}
-
-body.dark button#theme-toggle:hover {
-  background-color: #77cc77;
-  border-color: #77cc77;
-  color: #001a00;
-}
-
+/* Link buttons inside container */
 .container ul {
   list-style: none;
   padding: 0;
@@ -117,23 +127,24 @@ body.dark button#theme-toggle:hover {
 .container ul li a {
   display: inline-block;
   padding: 0.7rem 1.5rem;
-  background-color: #2ecc71; /* bright green */
+  background-color: #2ecc71;
   color: #000;
   font-weight: bold;
   border-radius: 6px;
   text-decoration: none;
   transition: background-color 0.3s, color 0.3s;
-  font-family: 'Minecraftia', sans-serif;
+  font-family: 'Minecraftia', monospace;
   box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  user-select: none;
 }
 
 .container ul li a:hover {
-  background-color: #27ae60; /* darker green */
+  background-color: #27ae60;
   color: #fff;
 }
 
 nav a[aria-current="page"] {
   font-weight: bold;
-  color: var(--accent-color);
+  color: #2ecc71;
   text-decoration: underline;
 }
