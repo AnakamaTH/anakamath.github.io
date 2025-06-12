@@ -1,33 +1,18 @@
-.tool-card {
-  font-family: 'Minecraftia', sans-serif;
-  background-color: #111;
-  color: white;
-  text-decoration: none;
-  border: 2px solid white;
-  padding: 1rem 2rem;
-  display: block;
-  max-width: 300px;
-  margin: 1rem auto;
-  box-shadow: 0 0 8px #00ff00aa;
-  transition: transform 0.3s, box-shadow 0.3s;
-  animation: fadeInCard 1s ease-in-out both;
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.15;
+  z-index: -1;
 }
 
-.tool-card span {
-  font-size: 1.2rem;
-  display: inline-block;
-  margin-left: 0.5rem;
-}
-
-.tool-card p {
-  font-size: 0.75rem;
-  color: #ccc;
-  margin-top: 0.5rem;
-}
-
-.tool-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 15px #00ff00;
+.mc-links {
+  padding: 2rem;
+  text-align: center;
 }
 
 .links-grid {
@@ -35,12 +20,36 @@
   justify-content: center;
   flex-wrap: wrap;
   gap: 2rem;
-  padding: 2rem 1rem;
+  margin-top: 2rem;
 }
 
-@keyframes fadeInCard {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+.tool-card {
+  font-family: 'Minecraftia', sans-serif;
+  background-color: #111;
+  color: white;
+  text-decoration: none;
+  border: 2px solid white;
+  padding: 1rem 2rem;
+  width: 250px;
+  box-shadow: 0 0 8px #00ff00aa;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tool-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 12px #00ff00;
+}
+
+.tool-card span {
+  font-size: 1.2rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.tool-card p {
+  font-size: 0.8rem;
+  color: #ccc;
+  margin: 0;
 }
 
 @media (max-width: 600px) {
