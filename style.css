@@ -253,3 +253,9 @@ body.dark .project-card {
   height: 24px;
   filter: invert(0.2) sepia(1) saturate(5) hue-rotate(180deg); /* optional for color tweak */
 }
+
+nav a[aria-current="page"] {
+  font-weight: bold;
+  color: var(--accent-color);
+  text-decoration: underline;
+}

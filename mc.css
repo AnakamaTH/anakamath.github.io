@@ -132,3 +132,8 @@ body.dark button#theme-toggle:hover {
   color: #fff;
 }
 
+nav a[aria-current="page"] {
+  font-weight: bold;
+  color: var(--accent-color);
+  text-decoration: underline;
+}
