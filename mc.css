@@ -28,99 +28,107 @@ body {
   margin: auto;
 }
 
+header, footer {
+  padding: 1rem 2rem;
+  background: transparent;
+  color: white;
+}
+
 header {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  background-color: #014d00; /* dark green */
-  padding: 1rem 2rem;
-  color: white;
+  align-items: center;
 }
 
 .logo {
   font-weight: bold;
   font-size: 1.5rem;
+  user-select: none;
 }
 
 nav a {
-  color: white;
   margin: 0 1rem;
   text-decoration: none;
+  color: white;
   font-weight: 600;
+  transition: color 0.3s ease;
 }
 
 nav a:hover {
-  text-decoration: underline;
+  color: #55aa55; /* subtle green hover */
 }
 
-#theme-toggle {
-  background-color: #007700;
-  border: none;
-  padding: 0.5rem 1rem;
+button#theme-toggle {
+  background: none;
+  border: 2px solid white;
   color: white;
+  padding: 0.4rem 0.8rem;
   cursor: pointer;
-  font-family: 'Minecraftia', sans-serif;
-  font-weight: 600;
-  border-radius: 4px;
-  transition: background-color 0.3s;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
 }
 
-#theme-toggle:hover {
-  background-color: #00aa00;
+button#theme-toggle:hover {
+  background-color: #55aa55;
+  border-color: #55aa55;
+  color: #000;
 }
 
-ul {
-  list-style-type: none;
-  padding-left: 0;
-}
-
-ul li {
-  margin: 1rem 0;
-  font-size: 1.2rem;
-}
-
-ul li a {
-  color: #00ff00; /* bright green */
-  text-decoration: none;
-  font-weight: 700;
-}
-
-ul li a:hover {
-  text-decoration: underline;
-}
-
-footer {
-  margin-top: 2rem;
-  font-size: 12px;
+footer p {
+  font-size: 0.9rem;
   opacity: 0.6;
-  color: white;
-  padding: 1rem 0;
-  background-color: #014d00;
-  font-family: 'Minecraftia', sans-serif;
+  margin: 0;
 }
 
-/* Dark mode styles */
+/* Dark mode */
 body.dark {
-  background: #111;
-  color: #ddd;
-}
-
-body.dark header {
-  background-color: #002d00;
+  background: linear-gradient(135deg, #003300, #001a00);
+  color: #aaffaa;
 }
 
 body.dark nav a {
   color: #aaffaa;
 }
 
-body.dark #theme-toggle {
-  background-color: #004400;
+body.dark nav a:hover {
+  color: #77cc77;
 }
 
-body.dark #theme-toggle:hover {
-  background-color: #006600;
+body.dark button#theme-toggle {
+  border-color: #aaffaa;
+  color: #aaffaa;
 }
 
-body.dark ul li a {
-  color: #66ff66;
+body.dark button#theme-toggle:hover {
+  background-color: #77cc77;
+  border-color: #77cc77;
+  color: #001a00;
 }
+
+.container ul {
+  list-style: none;
+  padding: 0;
+}
+
+.container ul li {
+  margin: 1rem 0;
+}
+
+.container ul li a {
+  display: inline-block;
+  padding: 0.7rem 1.5rem;
+  background-color: #2ecc71; /* bright green */
+  color: #000;
+  font-weight: bold;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+  font-family: 'Minecraftia', sans-serif;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.container ul li a:hover {
+  background-color: #27ae60; /* darker green */
+  color: #fff;
+}
+

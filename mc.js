@@ -11,15 +11,16 @@ const gifs = [
   "https://i.gifer.com/1toU.gif"
 ];
 
+// Shuffle helper function
 function shuffleArray(arr) {
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
+  for (let i = arr.length -1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i+1));
     [arr[i], arr[j]] = [arr[j], arr[i]];
   }
   return arr;
 }
 
-// Setup GIF queue
+// Initialize or restore shuffled GIF queue in sessionStorage
 if (!sessionStorage.getItem('gifQueue') || JSON.parse(sessionStorage.getItem('gifQueue')).length === 0) {
   sessionStorage.setItem('gifQueue', JSON.stringify(shuffleArray([...gifs])));
 }
@@ -29,7 +30,7 @@ const nextGif = gifQueue.shift();
 sessionStorage.setItem('gifQueue', JSON.stringify(gifQueue));
 document.querySelector(".overlay").style.backgroundImage = `url('${nextGif}')`;
 
-// Theme toggle
+// Theme toggle logic
 const toggleBtn = document.getElementById("theme-toggle");
 
 function setTheme(dark) {
@@ -37,11 +38,13 @@ function setTheme(dark) {
   localStorage.setItem("darkMode", dark ? "true" : "false");
 }
 
+// Toggle theme on button click
 toggleBtn.addEventListener("click", () => {
   const isDark = document.body.classList.contains("dark");
   setTheme(!isDark);
 });
 
+// On page load, apply saved theme
 window.addEventListener("DOMContentLoaded", () => {
   const prefersDark = localStorage.getItem("darkMode") === "true";
   setTheme(prefersDark);
