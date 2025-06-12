@@ -33,77 +33,78 @@
       <p>I am Anakama (AnakamaTheHedgehog), and this is my main website where you can access all my social platform links and projects!</p>
     </section>
     
-<section id="github-commits" style="max-width: 700px; margin: 2rem auto; font-family: Arial, sans-serif;">
-  <h2>Latest GitHub Commits from Multiple Repos</h2>
-</section>
+    <section id="github-commits" style="max-width: 700px; margin: 2rem auto; font-family: Arial, sans-serif;">
+      <h2>Latest GitHub Commits from Multiple Repos</h2>
+    </section>
 
-<script>
-  const repos = [
-    "anakamath/minecraft-batch-tool",
-    "anakamath/mcskinart",
-    "anakamath/sonic-rom-widescreen-patcher-plus",
-	"anakamath/ultimate-retro-sonic-collection",
-	"anakamath/URSCBoxArtViewer"
-  ];
+    <script>
+      const repos = [
+        "anakamath/minecraft-batch-tool",
+        "anakamath/mcskinart",
+        "anakamath/sonic-rom-widescreen-patcher-plus",
+        "anakamath/ultimate-retro-sonic-collection",
+        "anakamath/URSCBoxArtViewer"
+      ];
 
-  const container = document.getElementById("github-commits");
+      const container = document.getElementById("github-commits");
 
-  // Helper to create commit list for a repo
-  function createCommitList(repoName, commits) {
-    const section = document.createElement("section");
-    section.style.marginBottom = "2rem";
+      // Helper to create commit list for a repo
+      function createCommitList(repoName, commits) {
+        const section = document.createElement("section");
+        section.style.marginBottom = "2rem";
 
-    const title = document.createElement("h3");
-    title.textContent = repoName;
-    section.appendChild(title);
+        const title = document.createElement("h3");
+        title.textContent = repoName;
+        section.appendChild(title);
 
-    const ul = document.createElement("ul");
-    ul.style.listStyle = "none";
-    ul.style.padding = "0";
+        const ul = document.createElement("ul");
+        ul.style.listStyle = "none";
+        ul.style.padding = "0";
 
-    commits.slice(0, 5).forEach(commit => {
-      const li = document.createElement("li");
-      li.style.display = "flex";
-      li.style.alignItems = "center";
-      li.style.marginBottom = "1rem";
-      li.style.borderBottom = "1px solid #ddd";
-      li.style.paddingBottom = "1rem";
+        commits.slice(0, 5).forEach(commit => {
+          const li = document.createElement("li");
+          li.style.display = "flex";
+          li.style.alignItems = "center";
+          li.style.marginBottom = "1rem";
+          li.style.borderBottom = "1px solid #ddd";
+          li.style.paddingBottom = "1rem";
 
-      const avatarUrl = commit.author ? commit.author.avatar_url : "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png";
+          const avatarUrl = commit.author ? commit.author.avatar_url : "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png";
 
-      li.innerHTML = `
-        <img src="${avatarUrl}" alt="${commit.commit.author.name}" style="width: 40px; height: 40px; border-radius: 50%; margin-right: 1rem;" />
-        <div>
-          <strong>${commit.commit.author.name}</strong><br>
-          <span>${commit.commit.message}</span><br>
-          <small style="color: gray;">${new Date(commit.commit.author.date).toLocaleString()}</small>
-        </div>
-      `;
-      ul.appendChild(li);
-    });
+          li.innerHTML = `
+            <img src="${avatarUrl}" alt="${commit.commit.author.name}" style="width: 40px; height: 40px; border-radius: 50%; margin-right: 1rem;" />
+            <div>
+              <strong>${commit.commit.author.name}</strong><br>
+              <a href="${commit.html_url}" target="_blank" rel="noopener noreferrer" style="color:#0366d6; text-decoration:none;">
+                ${commit.commit.message}
+              </a><br>
+              <small style="color: gray;">${new Date(commit.commit.author.date).toLocaleString()}</small>
+            </div>
+          `;
+          ul.appendChild(li);
+        });
 
-    section.appendChild(ul);
-    return section;
-  }
+        section.appendChild(ul);
+        return section;
+      }
 
-  // Fetch commits for each repo and append
-  repos.forEach(repo => {
-    fetch(`https://api.github.com/repos/${repo}/commits`)
-      .then(res => res.json())
-      .then(data => {
-        const repoSection = createCommitList(repo, data);
-        container.appendChild(repoSection);
-      })
-      .catch(err => {
-        const errorMsg = document.createElement("p");
-        errorMsg.textContent = `Failed to load commits for ${repo}`;
-        errorMsg.style.color = "red";
-        container.appendChild(errorMsg);
-        console.error(err);
+      // Fetch commits for each repo and append
+      repos.forEach(repo => {
+        fetch(`https://api.github.com/repos/${repo}/commits`)
+          .then(res => res.json())
+          .then(data => {
+            const repoSection = createCommitList(repo, data);
+            container.appendChild(repoSection);
+          })
+          .catch(err => {
+            const errorMsg = document.createElement("p");
+            errorMsg.textContent = `Failed to load commits for ${repo}`;
+            errorMsg.style.color = "red";
+            container.appendChild(errorMsg);
+            console.error(err);
+          });
       });
-  });
-</script>
-
+    </script>
 
     <section id="mcskin" style="text-align:center; margin-top: 2rem;">
       <h2>Current Minecraft Profile</h2>
@@ -122,9 +123,10 @@
     </section>
   </main>
 
-  <script src="script.js"></script>
-</body>
   <footer>
     <p>&copy; 2025 Anakama — All rights reserved.</p>
   </footer>
+
+  <script src="script.js"></script>
+</body>
 </html>
