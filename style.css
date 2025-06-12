@@ -1,4 +1,14 @@
-/* Base Reset */
+:root {
+  --bg-light: linear-gradient(135deg, #a8ff78, #78ffd6);
+  --bg-dark: linear-gradient(135deg, #0f4037, #093028);
+  --text-light: #222;
+  --text-dark: #f0f0f0;
+  --card-light: #ffffff;
+  --card-dark: #1e1e1e;
+  --accent: #2ecc71;
+  --transition-speed: 0.4s;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -7,12 +17,17 @@
 
 body {
   font-family: 'Segoe UI', sans-serif;
-  background: #2ecc71; /* Green background */
-  color: #222;
+  background: var(--bg-light);
+  color: var(--text-light);
   line-height: 1.6;
+  transition: background var(--transition-speed), color var(--transition-speed);
 }
 
-/* Header */
+body.dark {
+  background: var(--bg-dark);
+  color: var(--text-dark);
+}
+
 header {
   background: #1e1e1e;
   color: #fff;
@@ -20,15 +35,15 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  transition: background var(--transition-speed);
 }
 
 .logo {
   font-size: 1.5rem;
   font-weight: bold;
-  color: white;
+  color: var(--accent);
 }
 
-/* Navigation */
 nav a {
   color: #fff;
   margin-left: 1.5rem;
@@ -41,7 +56,6 @@ nav a:hover {
   opacity: 0.8;
 }
 
-/* Main Content Container */
 main {
   padding: 2rem;
   max-width: 900px;
@@ -49,20 +63,24 @@ main {
 }
 
 section {
-  background: white;
+  background: var(--card-light);
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   margin-bottom: 2rem;
+  transition: background var(--transition-speed);
+}
+
+body.dark section {
+  background: var(--card-dark);
 }
 
 h1, h2 {
   margin-bottom: 1rem;
-  color: #222;
 }
 
 a {
-  color: #1e1e1e;
+  color: inherit;
   text-decoration: none;
 }
 
@@ -70,7 +88,6 @@ a:hover {
   text-decoration: underline;
 }
 
-/* Footer */
 footer {
   background: #1e1e1e;
   color: #ccc;
@@ -78,4 +95,20 @@ footer {
   padding: 1.5rem;
   font-size: 0.9rem;
   border-top: 2px solid rgba(255,255,255,0.1);
+}
+
+#theme-toggle {
+  background: none;
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background var(--transition-speed), color var(--transition-speed);
+}
+
+#theme-toggle:hover {
+  background: var(--accent);
+  color: #fff;
 }
