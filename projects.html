@@ -5,170 +5,139 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Anakama - Projects</title>
   <link rel="icon" href="favicon.png" type="image/png" />
-  
-  <!-- Social Media Meta -->
+
+  <!-- Meta Tags -->
   <meta property="og:title" content="Anakama Website / Projects" />
-  <meta property="og:description" content="All of my projects in one page!" />
+  <meta property="og:description" content="All of my projects in one place!" />
   <meta property="og:image" content="favicon.png" />
   <meta property="og:url" content="https://anakamath.github.io/projects" />
-  <meta name="twitter:card" content="favicon.png" />
-  
+  <meta name="twitter:card" content="summary_large_image" />
+
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .modrinth-icon {
+      width: 40px;
+      height: 40px;
+      fill: #1BD96A;
+    }
+  </style>
 </head>
 <body>
   <header>
     <div class="logo">Anakama</div>
     <nav>
       <a href="index.html">Main</a>
-      <a href="socials.html">Socials</a>
+      <a href="projects.html">Projects</a>
       <a href="mc.html">Minecraft Tools</a>
     </nav>
     <button id="theme-toggle">Toggle Theme</button>
   </header>
 
   <main>
-    <h1>My Projects</h1>
-    <ul>
-      <!-- CurseForge -->
-      <li>
-        <a href="https://www.curseforge.com/minecraft/mc-mods/illegal-craftings" target="_blank" rel="noopener noreferrer">
-          <img src="https://cdn.simpleicons.org/curseforge" alt="CurseForge" width="24" height="24" style="vertical-align:middle;" />
-          Illegal Craftings (CurseForge)
-        </a>
-      </li>
+    <section id="projects">
+      <h1>My Projects</h1>
 
-      <!-- Modrinth -->
-      <li>
-        <a href="https://modrinth.com/mod/illegal-craftings" target="_blank" rel="noopener noreferrer">
-          <svg width="24" height="24" viewBox="0 0 512 512" aria-label="Modrinth" role="img" style="vertical-align:middle; fill:#00a1f1;">
-            <path d="M321.99 504.22C185.27 540.8 44.75 459.77 8.11 323.24A257.6 257.6 0 0 1 0 275.46h43.27c1.09 11.91 3.2 23.89 6.41 35.83 3.36 12.51 7.77 24.46 13.11 35.78l38.59-23.15c-3.25-7.5-5.99-15.32-8.17-23.45-24.04-89.6 29.2-181.7 118.92-205.71 17-4.55 34.1-6.32 50.8-5.61L255.19 133c-10.46.05-21.08 1.42-31.66 4.25-66.22 17.73-105.52 85.7-87.78 151.84 1.1 4.07 2.38 8.04 3.84 11.9l49.35-29.61-14.87-39.43 46.6-47.87 58.9-12.69 17.05 20.99-27.15 27.5-23.68 7.45-16.92 17.39 8.29 23.07s16.79 17.84 16.82 17.85l23.72-6.31 16.88-18.54 36.86-11.67 10.98 24.7-38.03 46.63-63.73 20.18-28.58-31.82-49.82 29.89c25.54 29.08 63.94 45.23 103.75 41.86l11.53 42.99c-59.41 7.86-117.44-16.73-153.49-61.91l-38.41 23.04c50.61 66.49 138.2 99.43 223.97 76.48 61.74-16.52 109.79-58.6 135.81-111.78l42.64 15.5c-30.89 66.28-89.84 118.94-166.07 139.34z"/>
-          </svg>
-          Illegal Craftings (Modrinth)
+      <h2>GitHub</h2>
+      <div class="card-grid">
+        <a href="https://github.com/AnakamaTH/hedgeheaven" class="card" target="_blank">
+          <img src="https://cdn.simpleicons.org/github/181717" alt="GitHub" />
+          <span>HedgeHeaven</span>
         </a>
-      </li>
-      <li>
-        <a href="https://modrinth.com/mod/rickroll-mod" target="_blank" rel="noopener noreferrer">
-          <svg width="24" height="24" viewBox="0 0 512 512" aria-label="Modrinth" role="img" style="vertical-align:middle; fill:#00a1f1;">
-            <path d="M321.99 504.22C185.27 540.8 44.75 459.77 8.11 323.24A257.6 257.6 0 0 1 0 275.46h43.27c1.09 11.91 3.2 23.89 6.41 35.83 3.36 12.51 7.77 24.46 13.11 35.78l38.59-23.15c-3.25-7.5-5.99-15.32-8.17-23.45-24.04-89.6 29.2-181.7 118.92-205.71 17-4.55 34.1-6.32 50.8-5.61L255.19 133c-10.46.05-21.08 1.42-31.66 4.25-66.22 17.73-105.52 85.7-87.78 151.84 1.1 4.07 2.38 8.04 3.84 11.9l49.35-29.61-14.87-39.43 46.6-47.87 58.9-12.69 17.05 20.99-27.15 27.5-23.68 7.45-16.92 17.39 8.29 23.07s16.79 17.84 16.82 17.85l23.72-6.31 16.88-18.54 36.86-11.67 10.98 24.7-38.03 46.63-63.73 20.18-28.58-31.82-49.82 29.89c25.54 29.08 63.94 45.23 103.75 41.86l11.53 42.99c-59.41 7.86-117.44-16.73-153.49-61.91l-38.41 23.04c50.61 66.49 138.2 99.43 223.97 76.48 61.74-16.52 109.79-58.6 135.81-111.78l42.64 15.5c-30.89 66.28-89.84 118.94-166.07 139.34z"/>
-          </svg>
-          RickRoll Mod (Modrinth)
+        <a href="https://github.com/AnakamaTH/minecraft-batch-tool" class="card" target="_blank">
+          <img src="https://cdn.simpleicons.org/github/181717" alt="GitHub" />
+          <span>Minecraft Batch Tool</span>
         </a>
-      </li>
-      <li>
-        <a href="https://modrinth.com/mod/rickroll-mod-fabric" target="_blank" rel="noopener noreferrer">
-          <svg width="24" height="24" viewBox="0 0 512 512" aria-label="Modrinth" role="img" style="vertical-align:middle; fill:#00a1f1;">
-            <path d="M321.99 504.22C185.27 540.8 44.75 459.77 8.11 323.24A257.6 257.6 0 0 1 0 275.46h43.27c1.09 11.91 3.2 23.89 6.41 35.83 3.36 12.51 7.77 24.46 13.11 35.78l38.59-23.15c-3.25-7.5-5.99-15.32-8.17-23.45-24.04-89.6 29.2-181.7 118.92-205.71 17-4.55 34.1-6.32 50.8-5.61L255.19 133c-10.46.05-21.08 1.42-31.66 4.25-66.22 17.73-105.52 85.7-87.78 151.84 1.1 4.07 2.38 8.04 3.84 11.9l49.35-29.61-14.87-39.43 46.6-47.87 58.9-12.69 17.05 20.99-27.15 27.5-23.68 7.45-16.92 17.39 8.29 23.07s16.79 17.84 16.82 17.85l23.72-6.31 16.88-18.54 36.86-11.67 10.98 24.7-38.03 46.63-63.73 20.18-28.58-31.82-49.82 29.89c25.54 29.08 63.94 45.23 103.75 41.86l11.53 42.99c-59.41 7.86-117.44-16.73-153.49-61.91l-38.41 23.04c50.61 66.49 138.2 99.43 223.97 76.48 61.74-16.52 109.79-58.6 135.81-111.78l42.64 15.5c-30.89 66.28-89.84 118.94-166.07 139.34z"/>
-          </svg>
-          RickRoll Mod Fabric (Modrinth)
+        <a href="https://github.com/AnakamaTH/URSCBoxArtViewer" class="card" target="_blank">
+          <img src="https://cdn.simpleicons.org/github/181717" alt="GitHub" />
+          <span>URSC Box Art Viewer</span>
         </a>
-      </li>
-      <li>
-        <a href="https://modrinth.com/mod/illegal-craftings-fabric" target="_blank" rel="noopener noreferrer">
-          <svg width="24" height="24" viewBox="0 0 512 512" aria-label="Modrinth" role="img" style="vertical-align:middle; fill:#00a1f1;">
-            <path d="M321.99 504.22C185.27 540.8 44.75 459.77 8.11 323.24A257.6 257.6 0 0 1 0 275.46h43.27c1.09 11.91 3.2 23.89 6.41 35.83 3.36 12.51 7.77 24.46 13.11 35.78l38.59-23.15c-3.25-7.5-5.99-15.32-8.17-23.45-24.04-89.6 29.2-181.7 118.92-205.71 17-4.55 34.1-6.32 50.8-5.61L255.19 133c-10.46.05-21.08 1.42-31.66 4.25-66.22 17.73-105.52 85.7-87.78 151.84 1.1 4.07 2.38 8.04 3.84 11.9l49.35-29.61-14.87-39.43 46.6-47.87 58.9-12.69 17.05 20.99-27.15 27.5-23.68 7.45-16.92 17.39 8.29 23.07s16.79 17.84 16.82 17.85l23.72-6.31 16.88-18.54 36.86-11.67 10.98 24.7-38.03 46.63-63.73 20.18-28.58-31.82-49.82 29.89c25.54 29.08 63.94 45.23 103.75 41.86l11.53 42.99c-59.41 7.86-117.44-16.73-153.49-61.91l-38.41 23.04c50.61 66.49 138.2 99.43 223.97 76.48 61.74-16.52 109.79-58.6 135.81-111.78l42.64 15.5c-30.89 66.28-89.84 118.94-166.07 139.34z"/>
-          </svg>
-          Illegal Craftings Fabric (Modrinth)
-        </a>
-      </li>
+      </div>
 
-      <!-- GameBanana -->
-      <li>
-        <a href="https://gamebanana.com/mods/510866" target="_blank" rel="noopener noreferrer">
-          <img src="https://images.gamebanana.com/img/ico/games/banana.gif" alt="GameBanana" width="24" height="24" style="vertical-align:middle; border-radius:4px;" />
-          Mod 510866 (GameBanana)
+      <h2>GameBanana</h2>
+      <div class="card-grid">
+        <a href="https://gamebanana.com/mods/514381" class="card" target="_blank">
+          <img src="https://cdn.simpleicons.org/gamebanana/F2C300" alt="GameBanana" />
+          <span>Mod 514381</span>
         </a>
-      </li>
-      <li>
-        <a href="https://gamebanana.com/wips/84837" target="_blank" rel="noopener noreferrer">
-          <img src="https://images.gamebanana.com/img/ico/games/banana.gif" alt="GameBanana" width="24" height="24" style="vertical-align:middle; border-radius:4px;" />
-          WIP 84837 (GameBanana)
+        <a href="https://gamebanana.com/mods/512954" class="card" target="_blank">
+          <img src="https://cdn.simpleicons.org/gamebanana/F2C300" alt="GameBanana" />
+          <span>Mod 512954</span>
         </a>
-      </li>
-      <li>
-        <a href="https://gamebanana.com/mods/511539" target="_blank" rel="noopener noreferrer">
-          <img src="https://images.gamebanana.com/img/ico/games/banana.gif" alt="GameBanana" width="24" height="24" style="vertical-align:middle; border-radius:4px;" />
-          Mod 511539 (GameBanana)
+        <a href="https://gamebanana.com/wips/84837" class="card" target="_blank">
+          <img src="https://cdn.simpleicons.org/gamebanana/F2C300" alt="GameBanana" />
+          <span>WiP 84837</span>
         </a>
-      </li>
-      <li>
-        <a href="https://gamebanana.com/mods/482263" target="_blank" rel="noopener noreferrer">
-          <img src="https://images.gamebanana.com/img/ico/games/banana.gif" alt="GameBanana" width="24" height="24" style="vertical-align:middle; border-radius:4px;" />
-          Mod 482263 (GameBanana)
+        <a href="https://gamebanana.com/mods/510866" class="card" target="_blank">
+          <img src="https://cdn.simpleicons.org/gamebanana/F2C300" alt="GameBanana" />
+          <span>Mod 510866</span>
         </a>
-      </li>
-      <li>
-        <a href="https://gamebanana.com/mods/504800" target="_blank" rel="noopener noreferrer">
-          <img src="https://images.gamebanana.com/img/ico/games/banana.gif" alt="GameBanana" width="24" height="24" style="vertical-align:middle; border-radius:4px;" />
-          Mod 504800 (GameBanana)
+        <a href="https://gamebanana.com/mods/511539" class="card" target="_blank">
+          <img src="https://cdn.simpleicons.org/gamebanana/F2C300" alt="GameBanana" />
+          <span>Mod 511539</span>
         </a>
-      </li>
-      <li>
-        <a href="https://gamebanana.com/mods/482654" target="_blank" rel="noopener noreferrer">
-          <img src="https://images.gamebanana.com/img/ico/games/banana.gif" alt="GameBanana" width="24" height="24" style="vertical-align:middle; border-radius:4px;" />
-          Mod 482654 (GameBanana)
+        <a href="https://gamebanana.com/mods/482263" class="card" target="_blank">
+          <img src="https://cdn.simpleicons.org/gamebanana/F2C300" alt="GameBanana" />
+          <span>Mod 482263</span>
         </a>
-      </li>
-      <li>
-        <a href="https://gamebanana.com/mods/512954" target="_blank" rel="noopener noreferrer">
-          <img src="https://images.gamebanana.com/img/ico/games/banana.gif" alt="GameBanana" width="24" height="24" style="vertical-align:middle; border-radius:4px;" />
-          Mod 512954 (GameBanana)
+        <a href="https://gamebanana.com/mods/504800" class="card" target="_blank">
+          <img src="https://cdn.simpleicons.org/gamebanana/F2C300" alt="GameBanana" />
+          <span>Mod 504800</span>
         </a>
-      </li>
-      <li>
-        <a href="https://gamebanana.com/mods/514381" target="_blank" rel="noopener noreferrer">
-          <img src="https://images.gamebanana.com/img/ico/games/banana.gif" alt="GameBanana" width="24" height="24" style="vertical-align:middle; border-radius:4px;" />
-          Mod 514381 (GameBanana)
+        <a href="https://gamebanana.com/mods/482654" class="card" target="_blank">
+          <img src="https://cdn.simpleicons.org/gamebanana/F2C300" alt="GameBanana" />
+          <span>Mod 482654</span>
         </a>
-      </li>
+      </div>
 
-      <!-- GitHub -->
-      <li>
-        <a href="https://github.com/AnakamaTH/sonic-rom-widescreen-patcher-plus" target="_blank" rel="noopener noreferrer">
-          <img src="https://cdn.simpleicons.org/github" alt="GitHub" width="24" height="24" style="vertical-align:middle;" />
-          Sonic ROM Widescreen Patcher Plus (GitHub)
+      <h2>Modrinth</h2>
+      <div class="card-grid">
+        <a href="https://modrinth.com/modpack/bedrock-edition-modpack" class="card" target="_blank">
+          <svg class="modrinth-icon" viewBox="0 0 512 512"><path d="M321.99 504.22C185.27 540.8 44.75 459.77 8.11 323.24A257.6 257.6 0 0 1 0 275.46h43.27c1.09 11.91 3.2 23.89 6.41 35.83 3.36 12.51 7.77 24.46 13.11 35.78l38.59-23.15c-3.25-7.5-5.99-15.32-8.17-23.45-24.04-89.6 29.2-181.7 118.92-205.71 17-4.55 34.1-6.32 50.8-5.61L255.19 133c-10.46.05-21.08 1.42-31.66 4.25-66.22 17.73-105.52 85.7-87.78 151.84 1.1 4.07 2.38 8.04 3.84 11.9l49.35-29.61-14.87-39.43 46.6-47.87 58.9-12.69 17.05 20.99-27.15 27.5-23.68 7.45-16.92 17.39 8.29 23.07s16.79 17.84 16.82 17.85l23.72-6.31 16.88-18.54 36.86-11.67 10.98 24.7-38.03 46.63-63.73 20.18-28.58-31.82-49.82 29.89c25.54 29.08 63.94 45.23 103.75 41.86l11.53 42.99c-59.41 7.86-117.44-16.73-153.49-61.91l-38.41 23.04c50.61 66.49 138.2 99.43 223.97 76.48 61.74-16.52 109.79-58.6 135.81-111.78l42.64 15.5c-30.89 66.28-89.84 118.94-166.07 139.34z"/></svg>
+          <span>Bedrock Edition Modpack</span>
         </a>
-      </li>
-      <li>
-        <a href="https://github.com/AnakamaTH/ultimate-retro-sonic-collection" target="_blank" rel="noopener noreferrer">
-          <img src="https://cdn.simpleicons.org/github" alt="GitHub" width="24" height="24" style="vertical-align:middle;" />
-          Ultimate Retro Sonic Collection (GitHub)
+        <a href="https://modrinth.com/modpack/faster-performance" class="card" target="_blank">
+          <svg class="modrinth-icon" viewBox="0 0 512 512"><path d="M321.99 504.22..."/></svg>
+          <span>Faster Performance</span>
         </a>
-      </li>
-      <li>
-        <a href="https://github.com/AnakamaTH/URSCBoxArtViewer" target="_blank" rel="noopener noreferrer">
-          <img src="https://cdn.simpleicons.org/github" alt="GitHub" width="24" height="24" style="vertical-align:middle;" />
-          URSCBoxArtViewer (GitHub)
+        <a href="https://modrinth.com/modpack/faster-quality" class="card" target="_blank">
+          <svg class="modrinth-icon" viewBox="0 0 512 512"><path d="M321.99 504.22..."/></svg>
+          <span>Faster Quality</span>
         </a>
-      </li>
-      <li>
-        <a href="https://github.com/AnakamaTH/mcskinart" target="_blank" rel="noopener noreferrer">
-          <img src="https://cdn.simpleicons.org/github" alt="GitHub" width="24" height="24" style="vertical-align:middle;" />
-          MC Skin Art (GitHub)
+        <a href="https://modrinth.com/modpack/vanirl" class="card" target="_blank">
+          <svg class="modrinth-icon" viewBox="0 0 512 512"><path d="M321.99 504.22..."/></svg>
+          <span>VanIRL</span>
         </a>
-      </li>
-      <li>
-        <a href="https://github.com/AnakamaTH/mcskinconverter" target="_blank" rel="noopener noreferrer">
-          <img src="https://cdn.simpleicons.org/github" alt="GitHub" width="24" height="24" style="vertical-align:middle;" />
-          MC Skin Converter (GitHub)
+        <a href="https://modrinth.com/mod/rickroll-mod" class="card" target="_blank">
+          <svg class="modrinth-icon" viewBox="0 0 512 512"><path d="M321.99 504.22..."/></svg>
+          <span>RickRoll Mod</span>
         </a>
-      </li>
-      <li>
-        <a href="https://github.com/AnakamaTH/minecraft-batch-tool" target="_blank" rel="noopener noreferrer">
-          <img src="https://cdn.simpleicons.org/github" alt="GitHub" width="24" height="24" style="vertical-align:middle;" />
-          Minecraft Batch Tool (GitHub)
+        <a href="https://modrinth.com/mod/illegal-craftings" class="card" target="_blank">
+          <svg class="modrinth-icon" viewBox="0 0 512 512"><path d="M321.99 504.22..."/></svg>
+          <span>Illegal Craftings</span>
         </a>
-      </li>
-      <li>
-        <a href="https://github.com/AnakamaTH/hedgeheaven" target="_blank" rel="noopener noreferrer">
-          <img src="https://cdn.simpleicons.org/github" alt="GitHub" width="24" height="24" style="vertical-align:middle;" />
-          HedgeHeaven (GitHub)
+        <a href="https://modrinth.com/mod/rickroll-mod-fabric" class="card" target="_blank">
+          <svg class="modrinth-icon" viewBox="0 0 512 512"><path d="M321.99 504.22..."/></svg>
+          <span>RickRoll Mod (Fabric)</span>
         </a>
-      </li>
-    </ul>
+        <a href="https://modrinth.com/mod/illegal-craftings-fabric" class="card" target="_blank">
+          <svg class="modrinth-icon" viewBox="0 0 512 512"><path d="M321.99 504.22..."/></svg>
+          <span>Illegal Craftings (Fabric)</span>
+        </a>
+      </div>
+
+      <h2>CurseForge</h2>
+      <div class="card-grid">
+        <a href="https://www.curseforge.com/minecraft/mc-mods/illegal-craftings" class="card" target="_blank">
+          <img src="https://cdn.simpleicons.org/curseforge/FF6600" alt="CurseForge" />
+          <span>Illegal Craftings</span>
+        </a>
+      </div>
+
+    </section>
   </main>
 
   <footer>
-    <p>&copy; 2025 Anakama</p>
+    <p>&copy; 2025 Anakama — All rights reserved.</p>
   </footer>
 
   <script src="script.js"></script>
