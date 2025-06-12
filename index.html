@@ -5,16 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Anakama</title>
   <link rel="icon" href="favicon.png" type="image/png" />
-
+  
   <!-- Social Media Meta -->
   <meta property="og:title" content="Anakama Website / Main Page" />
   <meta property="og:description" content="AnakamaTheHedgehog Website" />
   <meta property="og:image" content="favicon.png" />
   <meta property="og:url" content="https://anakamath.github.io/" />
-  <meta name="twitter:card" content="summary_large_image" />
-
+  <meta name="twitter:card" content="favicon.png" />
+  
   <link rel="stylesheet" href="style.css" />
-  <script src="https://unpkg.com/skinview3d/bundles/skinview3d.min.js" defer></script>
 </head>
 <body>
   <header>
@@ -29,24 +28,25 @@
   </header>
 
   <main>
-    <!-- Intro -->
     <section id="about">
       <h1>Welcome!</h1>
       <p>I am Anakama (AnakamaTheHedgehog), and this is my main website where you can access all my social platform links and projects!</p>
     </section>
 
-    <!-- Call to Action Buttons -->
-    <section id="cta" style="text-align: center; margin-top: 2rem;">
-      <a href="projects.html" class="cta-btn">See My Projects</a>
-      <a href="socials.html" class="cta-btn">Follow Me Online</a>
-      <a href="mc.html" class="cta-btn">Try My Minecraft Tools</a>
-    </section>
-
-    <!-- Minecraft Skin Viewer -->
-    <section id="skin-preview" style="margin-top: 3rem; text-align: center;">
+    <section id="mcskin" style="text-align:center; margin-top: 2rem;">
       <h2>My Minecraft Skin</h2>
-      <!-- Changed from div to canvas -->
-      <canvas id="skin_container" width="300" height="400" style="margin: auto; display: block;"></canvas>
+      <!-- Minecraft Head Image -->
+      <img 
+        src="https://crafatar.com/avatars/119adc02cd86407a98cb1dbfbdf41fde?size=100&overlay" 
+        alt="Minecraft Head" 
+        style="border-radius: 15px; margin-right: 1rem;"
+      />
+      <!-- Minecraft Cape Image -->
+      <img 
+        src="https://crafatar.com/capes/119adc02cd86407a98cb1dbfbdf41fde" 
+        alt="Minecraft Cape" 
+        style="border-radius: 15px;"
+      />
     </section>
   </main>
 
@@ -54,19 +54,6 @@
     <p>&copy; 2025 Anakama — All rights reserved.</p>
   </footer>
 
-  <script>
-    // Wait for the skinview3d library to load (since we used defer)
-    window.addEventListener('load', () => {
-      const viewer = new skinview3d.SkinViewer({
-        canvas: document.getElementById("skin_container"),
-        width: 300,
-        height: 400,
-        skin: "https://crafatar.com/skins/119adc02cd86407a98cb1dbfbdf41fde?default=MHF_Steve"
-      });
-      viewer.controls.enableZoom = false;
-      viewer.animation = new skinview3d.WalkingAnimation();
-      viewer.animation.speed = 1;
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
