@@ -12,8 +12,9 @@ body {
   line-height: 1.6;
 }
 
+/* Header */
 header {
-  background: #333;
+  background: #222;
   color: #fff;
   padding: 1rem 2rem;
   display: flex;
@@ -24,19 +25,23 @@ header {
 .logo {
   font-size: 1.5rem;
   font-weight: bold;
+  color: #2ecc71; /* green */
 }
 
+/* Navigation */
 nav a {
   color: #fff;
   margin-left: 1.5rem;
   text-decoration: none;
   font-weight: 500;
+  transition: color 0.3s;
 }
 
 nav a:hover {
-  text-decoration: underline;
+  color: #2ecc71;
 }
 
+/* Main Content */
 main {
   padding: 2rem;
 }
@@ -47,12 +52,24 @@ section {
 
 h1, h2 {
   margin-bottom: 1rem;
+  color: #2ecc71;
 }
 
+a {
+  color: #2ecc71;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Footer */
 footer {
-  background: #222;
+  background: #111;
   color: #ccc;
   text-align: center;
   padding: 1.5rem;
   font-size: 0.9rem;
+  border-top: 2px solid #2ecc71;
 }
