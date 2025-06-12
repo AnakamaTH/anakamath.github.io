@@ -1,3 +1,15 @@
+@import url('https://fonts.cdnfonts.com/css/minecraftia');
+
+body {
+  margin: 0;
+  font-family: 'Minecraftia', sans-serif;
+  background: #000;
+  color: white;
+  text-align: center;
+  position: relative;
+  overflow-x: hidden;
+}
+
 .overlay {
   position: fixed;
   top: 0;
@@ -10,55 +22,105 @@
   z-index: -1;
 }
 
-.mc-links {
+.container {
   padding: 2rem;
-  text-align: center;
+  max-width: 600px;
+  margin: auto;
 }
 
-.links-grid {
+header {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
-.tool-card {
-  font-family: 'Minecraftia', sans-serif;
-  background-color: #111;
-  color: white;
-  text-decoration: none;
-  border: 2px solid white;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #014d00; /* dark green */
   padding: 1rem 2rem;
-  width: 250px;
-  box-shadow: 0 0 8px #00ff00aa;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  color: white;
 }
 
-.tool-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 12px #00ff00;
+.logo {
+  font-weight: bold;
+  font-size: 1.5rem;
 }
 
-.tool-card span {
+nav a {
+  color: white;
+  margin: 0 1rem;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+#theme-toggle {
+  background-color: #007700;
+  border: none;
+  padding: 0.5rem 1rem;
+  color: white;
+  cursor: pointer;
+  font-family: 'Minecraftia', sans-serif;
+  font-weight: 600;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+#theme-toggle:hover {
+  background-color: #00aa00;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+ul li {
+  margin: 1rem 0;
   font-size: 1.2rem;
-  display: block;
-  margin-bottom: 0.5rem;
 }
 
-.tool-card p {
-  font-size: 0.8rem;
-  color: #ccc;
-  margin: 0;
+ul li a {
+  color: #00ff00; /* bright green */
+  text-decoration: none;
+  font-weight: 700;
 }
 
-@media (max-width: 600px) {
-  .tool-card {
-    width: 90%;
-    font-size: 14px;
-  }
+ul li a:hover {
+  text-decoration: underline;
+}
 
-  .tool-card p {
-    font-size: 0.7rem;
-  }
+footer {
+  margin-top: 2rem;
+  font-size: 12px;
+  opacity: 0.6;
+  color: white;
+  padding: 1rem 0;
+  background-color: #014d00;
+  font-family: 'Minecraftia', sans-serif;
+}
+
+/* Dark mode styles */
+body.dark {
+  background: #111;
+  color: #ddd;
+}
+
+body.dark header {
+  background-color: #002d00;
+}
+
+body.dark nav a {
+  color: #aaffaa;
+}
+
+body.dark #theme-toggle {
+  background-color: #004400;
+}
+
+body.dark #theme-toggle:hover {
+  background-color: #006600;
+}
+
+body.dark ul li a {
+  color: #66ff66;
 }
