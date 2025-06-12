@@ -114,3 +114,35 @@ footer {
   background: var(--accent);
   color: #fff;
 }
+
+.project-links {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 1rem;
+}
+
+.project-links li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0.5rem 0;
+  font-size: 1rem;
+}
+
+.project-links img {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+}
+
+.project-links a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+  transition: opacity 0.2s;
+}
+
+.project-links a:hover {
+  opacity: 0.7;
+  text-decoration: underline;
+}
