@@ -19,19 +19,24 @@ function shuffleArray(arr) {
   return arr;
 }
 
-function updateBackground() {
-  let queue = JSON.parse(sessionStorage.getItem("gifQueue")) || shuffleArray([...gifs]);
-  const gif = queue.shift();
-  document.querySelector(".overlay").style.backgroundImage = `url('${gif}')`;
-  sessionStorage.setItem("gifQueue", JSON.stringify(queue.length ? queue : shuffleArray([...gifs])));
+// Setup GIF queue
+if (!sessionStorage.getItem('gifQueue') || JSON.parse(sessionStorage.getItem('gifQueue')).length === 0) {
+  sessionStorage.setItem('gifQueue', JSON.stringify(shuffleArray([...gifs])));
 }
 
-// Theme logic
+const gifQueue = JSON.parse(sessionStorage.getItem('gifQueue'));
+const nextGif = gifQueue.shift();
+sessionStorage.setItem('gifQueue', JSON.stringify(gifQueue));
+document.querySelector(".overlay").style.backgroundImage = `url('${nextGif}')`;
+
+// Theme toggle
 const toggleBtn = document.getElementById("theme-toggle");
+
 function setTheme(dark) {
   document.body.classList.toggle("dark", dark);
   localStorage.setItem("darkMode", dark ? "true" : "false");
 }
+
 toggleBtn.addEventListener("click", () => {
   const isDark = document.body.classList.contains("dark");
   setTheme(!isDark);
@@ -40,6 +45,4 @@ toggleBtn.addEventListener("click", () => {
 window.addEventListener("DOMContentLoaded", () => {
   const prefersDark = localStorage.getItem("darkMode") === "true";
   setTheme(prefersDark);
-  updateBackground();
-  setInterval(updateBackground, 30000); // every 30 seconds
 });
