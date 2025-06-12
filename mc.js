@@ -37,10 +37,9 @@ toggleBtn.addEventListener("click", () => {
   setTheme(!isDark);
 });
 
-// On load
 window.addEventListener("DOMContentLoaded", () => {
   const prefersDark = localStorage.getItem("darkMode") === "true";
   setTheme(prefersDark);
   updateBackground();
-  setInterval(updateBackground, 30000); // change every 30 seconds
+  setInterval(updateBackground, 30000); // every 30 seconds
 });
