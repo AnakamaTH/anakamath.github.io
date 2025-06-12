@@ -67,17 +67,29 @@ nav a {
   transition: color 0.3s ease;
 }
 
-body.mc-theme.dark nav a {
+body {
+  margin: 0;
+  font-family: 'Minecraftia', monospace, sans-serif;
+  background: #000;
+  color: white;
+  text-align: center;
+  position: relative;
+  overflow-x: hidden;
+  transition: background 0.4s, color 0.4s;
+}
+
+body.dark {
+  background: linear-gradient(135deg, #003300, #001a00);
   color: #aaffaa;
 }
 
-nav a:hover {
-  color: #55aa55;
+body.dark header,
+body.dark footer {
+  color: #aaffaa;
 }
 
-body.mc-theme.dark nav a:hover {
-  color: #77cc77;
-}
+/* and so on: replace all `body.mc-theme` with `body` and all `body.mc-theme.dark` with `body.dark` */
+
 
 button#theme-toggle {
   background: none;
