@@ -279,3 +279,11 @@ nav a[aria-current="page"] {
   color: #fff;
 }
 
+#commit-list li {
+  background: #f7f7f7;
+  margin: 0.5rem auto;
+  padding: 1rem;
+  border-radius: 8px;
+  max-width: 600px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}

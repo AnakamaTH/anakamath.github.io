@@ -1,59 +1,130 @@
-	<!DOCTYPE html>
-	<html lang="en">
-	<head>
-	  <meta charset="UTF-8" />
-	  <meta name="viewport" content="width=device-width, initial-scale=1" />
-	  <title>Anakama</title>
-	  <link rel="icon" href="favicon.png" type="image/png" />
-	  
-	  <!-- Social Media Meta -->
-	  <meta property="og:title" content="Anakama Website / Main Page" />
-	  <meta property="og:description" content="AnakamaTheHedgehog Website" />
-	  <meta property="og:image" content="favicon.png" />
-	  <meta property="og:url" content="https://anakamath.github.io/" />
-	  <meta name="twitter:card" content="favicon.png" />
-	  
-	  <link rel="stylesheet" href="style.css" />
-	</head>
-	<body>
-	  <header>
-		<div class="logo">Anakama</div>
-		<nav>
-		  <a href="" aria-current="page">Main</a>
-		  <a href="projects.html">Projects</a>
-		  <a href="socials.html">Socials</a>
-		  <a href="mc.html">Minecraft Tools</a>
-		</nav>
-		<button id="theme-toggle">Toggle Theme</button>
-	  </header>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Anakama</title>
+  <link rel="icon" href="favicon.png" type="image/png" />
+  
+  <!-- Social Media Meta -->
+  <meta property="og:title" content="Anakama Website / Main Page" />
+  <meta property="og:description" content="AnakamaTheHedgehog Website" />
+  <meta property="og:image" content="favicon.png" />
+  <meta property="og:url" content="https://anakamath.github.io/" />
+  <meta name="twitter:card" content="favicon.png" />
+  
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">Anakama</div>
+    <nav>
+      <a href="" aria-current="page">Main</a>
+      <a href="projects.html">Projects</a>
+      <a href="socials.html">Socials</a>
+      <a href="mc.html">Minecraft Tools</a>
+    </nav>
+    <button id="theme-toggle">Toggle Theme</button>
+  </header>
 
-	  <main>
-		<section id="about">
-		  <h1>Welcome!</h1>
-		  <p>I am Anakama (AnakamaTheHedgehog), and this is my main website where you can access all my social platform links and projects!</p>
-		</section>
+  <main>
+    <section id="about">
+      <h1>Welcome!</h1>
+      <p>I am Anakama (AnakamaTheHedgehog), and this is my main website where you can access all my social platform links and projects!</p>
+    </section>
+    
+<section id="github-commits" style="max-width: 700px; margin: 2rem auto; font-family: Arial, sans-serif;">
+  <h2>Latest GitHub Commits from Multiple Repos</h2>
+</section>
 
-		<section id="mcskin" style="text-align:center; margin-top: 2rem;">
-		  <h2>Current Minecraft Profile</h2>
-		  <!-- Minecraft Head Image -->
-		  <img 
-			src="https://crafatar.com/avatars/119adc02cd86407a98cb1dbfbdf41fde?size=100&overlay" 
-			alt="Minecraft Head" 
-			style="border-radius: 15px; margin-right: 1rem;"
-		  />
-		  <!-- Minecraft Cape Image -->
-		  <img 
-			src="cape.png" 
-			alt="Minecraft Cape" 
-			style="border-radius: 15px;"
-		  />
-		</section>
-	  </main>
+<script>
+  const repos = [
+    "anakamath/mc-batch-tool",
+    "anakamath/mcskinart",
+    "anakamath/sonic-rom-widescreen-patcher-plus",
+	"anakamath/ultimate-retro-sonic-collection",
+	"anakamath/URSCBoxArtViewer"
+  ];
 
-	  <footer>
-		<p>&copy; 2025 Anakama — All rights reserved.</p>
-	  </footer>
+  const container = document.getElementById("github-commits");
 
-	  <script src="script.js"></script>
-	</body>
-	</html>
+  // Helper to create commit list for a repo
+  function createCommitList(repoName, commits) {
+    const section = document.createElement("section");
+    section.style.marginBottom = "2rem";
+
+    const title = document.createElement("h3");
+    title.textContent = repoName;
+    section.appendChild(title);
+
+    const ul = document.createElement("ul");
+    ul.style.listStyle = "none";
+    ul.style.padding = "0";
+
+    commits.slice(0, 5).forEach(commit => {
+      const li = document.createElement("li");
+      li.style.display = "flex";
+      li.style.alignItems = "center";
+      li.style.marginBottom = "1rem";
+      li.style.borderBottom = "1px solid #ddd";
+      li.style.paddingBottom = "1rem";
+
+      const avatarUrl = commit.author ? commit.author.avatar_url : "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png";
+
+      li.innerHTML = `
+        <img src="${avatarUrl}" alt="${commit.commit.author.name}" style="width: 40px; height: 40px; border-radius: 50%; margin-right: 1rem;" />
+        <div>
+          <strong>${commit.commit.author.name}</strong><br>
+          <span>${commit.commit.message}</span><br>
+          <small style="color: gray;">${new Date(commit.commit.author.date).toLocaleString()}</small>
+        </div>
+      `;
+      ul.appendChild(li);
+    });
+
+    section.appendChild(ul);
+    return section;
+  }
+
+  // Fetch commits for each repo and append
+  repos.forEach(repo => {
+    fetch(`https://api.github.com/repos/${repo}/commits`)
+      .then(res => res.json())
+      .then(data => {
+        const repoSection = createCommitList(repo, data);
+        container.appendChild(repoSection);
+      })
+      .catch(err => {
+        const errorMsg = document.createElement("p");
+        errorMsg.textContent = `Failed to load commits for ${repo}`;
+        errorMsg.style.color = "red";
+        container.appendChild(errorMsg);
+        console.error(err);
+      });
+  });
+</script>
+
+
+    <section id="mcskin" style="text-align:center; margin-top: 2rem;">
+      <h2>Current Minecraft Profile</h2>
+      <!-- Minecraft Head Image -->
+      <img 
+        src="https://crafatar.com/avatars/119adc02cd86407a98cb1dbfbdf41fde?size=100&overlay" 
+        alt="Minecraft Head" 
+        style="border-radius: 15px; margin-right: 1rem;"
+      />
+      <!-- Minecraft Cape Image -->
+      <img 
+        src="cape.png" 
+        alt="Minecraft Cape" 
+        style="border-radius: 15px;"
+      />
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+  <footer>
+    <p>&copy; 2025 Anakama — All rights reserved.</p>
+  </footer>
+</html>
