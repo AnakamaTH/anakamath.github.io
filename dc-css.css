@@ -1,4 +1,8 @@
-/* Full Discord-style layout */
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+body {
+  font-family: 'Inter', 'Helvetica Neue', sans-serif;
+}
 
 body {
   margin: 0;
@@ -227,3 +231,18 @@ body:not(.dark) .server-bubble[title]::after {
   border: 1px solid #ccc;
 }
 
+
+.server-details .info-text {
+  font-size: 1.25rem; /* Or larger like 1.5rem */
+  line-height: 1.6;
+}
+
+.server-details h1 {
+  font-size: 2rem; /* adjust as needed */
+  margin-bottom: 0.5rem;
+}
+
+.server-details .info-text {
+  font-size: 1.25rem;
+  line-height: 1.6;
+}

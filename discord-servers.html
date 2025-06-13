@@ -30,17 +30,25 @@
 
   <main class="discord-main">
     <aside class="server-sidebar">
-<a href="https://discord.gg/JsRrbVTFRN" class="server-bubble" title="The latest Server related to HedgeLand, a Sonic the Hedgehog and Sonic.EXE fan developer community to help other devs and allow other devs to meet!">
-  <img src="https://cdn.discordapp.com/icons/1380093565761486982/1fd5905c88120cd8043157fd101415fe.webp?size=1024" alt="HedgeHeaven (Reboot)" />
-</a>
-<a href="https://discord.gg/nBNTP32VNB" class="server-bubble" title="Official Disord Server of URSC">
-  <img src="https://cdn.discordapp.com/icons/1336405120799342622/31b8ba090a524d4c361b441c19b489c9.webp?size=1024" alt="Ultimate Retro Sonic Collection (Discord)" />
-</a>
-<a href="https://discord.gg/ACYhFdzpTu" class="server-bubble" title="A place where you can learn Sonic Hacking and Modding!">
-  <img src="https://cdn.discordapp.com/icons/1247613329191735477/df5cf309b644979382389a1ecec183c1.webp?size=1024" alt="Sonic Hacking & Modding Corner" />
-</a>
+      <a href="https://discord.gg/JsRrbVTFRN" class="server-bubble"
+         data-info="The latest Server related to HedgeLand, a Sonic the Hedgehog and Sonic.EXE fan developer community to help other devs and allow other devs to meet!">
+        <img src="hh.png"
+             alt="HedgeHeaven (Reboot)" />
+      </a>
 
+      <a href="https://discord.gg/nBNTP32VNB" class="server-bubble"
+         data-info="Official Discord Server of URSC">
+        <img src="https://cdn.discordapp.com/icons/1336405120799342622/31b8ba090a524d4c361b441c19b489c9.webp?size=1024"
+             alt="Ultimate Retro Sonic Collection (Discord)" />
+      </a>
+
+      <a href="https://discord.gg/ACYhFdzpTu" class="server-bubble"
+         data-info="A place where you can learn Sonic Hacking and Modding!">
+        <img src="https://cdn.discordapp.com/icons/1247613329191735477/df5cf309b644979382389a1ecec183c1.webp?size=1024"
+             alt="Sonic Hacking & Modding Corner" />
+      </a>
     </aside>
+
     <section class="server-details">
       <h1>Recommended/Related Discord Servers</h1>
       <p>Click on a server to join, hover to see info!</p>
@@ -51,6 +59,30 @@
     <p>&copy; 2025 Anakama — All rights reserved.</p>
   </footer>
 
+  <!-- Inline Script -->
+  <script>
+  const bubbles = document.querySelectorAll('.server-bubble');
+  const detailsSection = document.querySelector('.server-details');
+
+  bubbles.forEach(bubble => {
+    bubble.addEventListener('mouseenter', () => {
+      const info = bubble.getAttribute('data-info');
+      const serverName = bubble.querySelector('img').alt;
+
+      detailsSection.innerHTML = `
+        <h1>${serverName}</h1>
+        <p class="info-text">${info}</p>
+      `;
+    });
+
+    bubble.addEventListener('mouseleave', () => {
+      detailsSection.innerHTML = `
+        <h1>Recommended/Related Discord Servers</h1>
+        <p class="info-text">Click on a server to join, hover to see info!</p>
+      `;
+    });
+  });
+  </script>
   <script src="dcscript.js"></script>
 </body>
 </html>
