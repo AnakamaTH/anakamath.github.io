@@ -246,3 +246,23 @@ body:not(.dark) .server-bubble[title]::after {
   font-size: 1.25rem;
   line-height: 1.6;
 }
+
+/* Flex container for logo and text */
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Image settings */
+.logo-img {
+  width: 40px;
+  height: 40px;
+}
+
+/* Text settings */
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  font-family: 'Noto Sans', sans-serif; /* Optional: match Discord aesthetic */
+}
