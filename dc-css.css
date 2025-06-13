@@ -267,76 +267,49 @@ body:not(.dark) .server-bubble[title]::after {
   font-family: 'Noto Sans', sans-serif; /* Optional: match Discord aesthetic */
 }
 
-/* Base layout: keep your existing styles for desktop */
-
-/* Responsive styles */
 @media (max-width: 768px) {
-  /* Make main content stack vertically */
-  .discord-main {
+  header {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
   }
 
-  /* Sidebar takes full width, smaller height */
-  .server-sidebar {
+  .logo-container {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
-    padding: 1rem 0;
+    align-items: center;
+    gap: 10px;
   }
 
-  /* Make server bubbles smaller and wrap */
-  .server-bubble {
-    flex: 1 1 30%; /* grow and shrink, about 30% width */
-    max-width: 120px;
-    margin: 0.5rem;
+  #theme-toggle {
+    order: 2; /* place toggle below or next to nav */
+    align-self: center;
   }
 
-  /* Ensure images inside bubbles scale */
-  .server-bubble img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-  }
-
-  /* Server details take full width and add spacing */
-  .server-details {
-    width: 100%;
-    padding: 1rem;
-    text-align: center;
-  }
-
-  /* Adjust nav links to wrap and be easier to tap */
   header nav {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 0.5rem;
-    margin: 1rem 0;
+    gap: 10px;
+    width: 100%;
   }
 
   header nav a {
-    padding: 0.5rem 1rem;
-    flex: 1 1 auto;
+    flex: 1 1 120px;
     max-width: 150px;
     text-align: center;
+    padding: 8px 12px;
+    border-radius: 6px;
+    background: #eee;
+    color: inherit;
+    text-decoration: none;
+    box-sizing: border-box;
   }
 
-  /* Adjust header layout for small screens */
-  header {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .logo-container {
-    margin-bottom: 1rem;
-  }
-
-  /* Make the theme toggle button full width or centered */
-  #theme-toggle {
-    margin-top: 0.5rem;
-    width: 100%;
-    max-width: 200px;
+  header nav a[aria-current="page"],
+  header nav a:hover {
+    background-color: #5865F2;
+    color: white;
   }
 }
