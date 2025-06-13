@@ -1,6 +1,6 @@
 @import url('https://fonts.cdnfonts.com/css/minecraftia');
 
-body {
+body.mc-theme {
   margin: 0;
   font-family: 'Minecraftia', monospace, sans-serif;
   background: #000;
@@ -11,7 +11,7 @@ body {
   transition: background 0.4s, color 0.4s;
 }
 
-body.dark {
+body.mc-theme.dark {
   background: linear-gradient(135deg, #003300, #001a00);
   color: #aaffaa;
 }
@@ -41,8 +41,8 @@ header, footer {
   transition: color 0.4s;
 }
 
-body.dark header,
-body.dark footer {
+body.mc-theme.dark header,
+body.mc-theme.dark footer {
   color: #aaffaa;
 }
 
@@ -67,6 +67,30 @@ nav a {
   transition: color 0.3s ease;
 }
 
+body {
+  margin: 0;
+  font-family: 'Minecraftia', monospace, sans-serif;
+  background: #000;
+  color: white;
+  text-align: center;
+  position: relative;
+  overflow-x: hidden;
+  transition: background 0.4s, color 0.4s;
+}
+
+body.dark {
+  background: linear-gradient(135deg, #003300, #001a00);
+  color: #aaffaa;
+}
+
+body.dark header,
+body.dark footer {
+  color: #aaffaa;
+}
+
+/* and so on: replace all `body.mc-theme` with `body` and all `body.mc-theme.dark` with `body.dark` */
+
+
 button#theme-toggle {
   background: none;
   border: 2px solid white;
@@ -79,7 +103,7 @@ button#theme-toggle {
   user-select: none;
 }
 
-body.dark button#theme-toggle {
+body.mc-theme.dark button#theme-toggle {
   border-color: #aaffaa;
   color: #aaffaa;
 }
@@ -90,7 +114,7 @@ button#theme-toggle:hover {
   color: #000;
 }
 
-body.dark button#theme-toggle:hover {
+body.mc-theme.dark button#theme-toggle:hover {
   background-color: #77cc77;
   border-color: #77cc77;
   color: #001a00;
@@ -135,4 +159,56 @@ nav a[aria-current="page"] {
   font-weight: bold;
   color: #2ecc71;
   text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 1rem;      /* small horizontal padding so no overflow */
+    box-sizing: border-box;
+  }
+
+  nav a {
+    margin: 0.5rem 0;     /* vertical spacing between links */
+    width: 100%;          /* full width inside nav */
+    max-width: 300px;     /* optional max width so links aren't too wide */
+    padding: 0.7rem 1rem; /* consistent padding */
+    text-align: center;   /* center text */
+    display: block;       /* block display for full width */
+    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 768px) {
+  nav {
+    flex-wrap: wrap;       /* allow wrapping on small screens */
+    justify-content: center; /* center the wrapped links */
+    padding: 0 1rem;       /* prevent edges overflow */
+  }
+  
+  nav a {
+    flex: 1 1 auto;        /* allow links to shrink and grow */
+    min-width: 120px;      /* minimum width for each link */
+    margin: 0.3rem 0.5rem; /* vertical and horizontal margin */
+    text-align: center;
+  }
+  
+  /* Keep header flex direction same, but stack vertically */
+  header {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  /* Keep logo and nav spacing nice on mobile */
+  .logo {
+    margin-bottom: 0.5rem;
+  }
+
+  /* Theme toggle button below nav */
+  button#theme-toggle {
+    margin-top: 0.5rem;
+  }
 }
