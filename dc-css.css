@@ -313,3 +313,49 @@ body:not(.dark) .server-bubble[title]::after {
     color: white;
   }
 }
+
+@media (max-width: 768px) {
+  /* Stack main content vertically */
+  .discord-main {
+    flex-direction: column;
+    height: auto; /* let it expand */
+  }
+
+  /* Sidebar becomes horizontal, smaller height */
+  .server-sidebar {
+    width: 100%;
+    height: 72px;
+    flex-direction: row;
+    overflow-x: auto;
+    padding: 0.5rem;
+    gap: 0.5rem;
+    border-bottom: 1px solid #444;
+  }
+
+  /* Server bubbles smaller */
+  .server-bubble {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+  }
+
+  /* Server details take full width and height auto */
+  .server-details {
+    flex: 1;
+    padding: 1rem;
+    height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  body.dark header nav a {
+    background: #2b2d31; /* dark background for nav links */
+    color: #dbdee1; /* light text */
+  }
+
+  body.dark header nav a[aria-current="page"],
+  body.dark header nav a:hover {
+    background-color: #5865F2; /* keep your purple hover/active */
+    color: white;
+  }
+}
