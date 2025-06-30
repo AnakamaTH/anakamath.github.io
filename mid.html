@@ -21,6 +21,18 @@
   <meta property="twitter:image" content="https://anakamath.github.io/og-image.png" />
 
   <link rel="stylesheet" href="style.css" />
+  <style>
+    main {
+      padding: 1rem;
+    }
+    .uploader {
+      margin-top: 1rem;
+    }
+    input[type="file"], input[type="url"], button {
+      margin: 0.5rem 0;
+      display: block;
+    }
+  </style>
 </head>
 <body>
   <header>	
@@ -36,20 +48,59 @@
   </header>
 
   <main>
+    <h2>MIDI Player</h2>
+
     <midi-player
+      id="midiPlayer"
       src="https://anakamath.github.io/file/stillaliveradiomixmid.mid"
       sound-font
       visualizer="#myVisualizer">
     </midi-player>
     <midi-visualizer type="piano-roll" id="myVisualizer"></midi-visualizer>
+
+    <div class="uploader">
+      <h3>Load Your Own MIDI</h3>
+      <label for="midiUpload">Upload a MIDI file:</label>
+      <input type="file" id="midiUpload" accept=".mid,.midi" />
+
+      <label for="midiURL">Or paste a MIDI file URL:</label>
+      <input type="url" id="midiURL" placeholder="https://example.com/your.mid" />
+      <button id="loadURL">Load MIDI from URL</button>
+    </div>
   </main>
 
   <footer>
     <p>&copy; 2025 Anakama — All rights reserved.</p>
   </footer>
 
-  <!-- Scripts -->
+  <!-- MIDI & Scripts -->
   <script src="https://cdn.jsdelivr.net/combine/npm/tone@14.7.58,npm/@magenta/music@1.23.1/es6/core.js,npm/focus-visible@5,npm/html-midi-player@1.4.0"></script>
-  <script src="script.js"></script>
+  <script>
+    const midiPlayer = document.getElementById("midiPlayer");
+
+    // Load local MIDI file
+    document.getElementById("midiUpload").addEventListener("change", function(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const objectUrl = URL.createObjectURL(file);
+        midiPlayer.src = objectUrl;
+      }
+    });
+
+    // Load from pasted URL
+    document.getElementById("loadURL").addEventListener("click", function() {
+      const url = document.getElementById("midiURL").value.trim();
+      if (url && (url.endsWith(".mid") || url.endsWith(".midi"))) {
+        midiPlayer.src = url;
+      } else {
+        alert("Please enter a valid MIDI file URL ending in .mid or .midi");
+      }
+    });
+
+    // Optional: Theme toggle
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+    });
+  </script>
 </body>
 </html>
