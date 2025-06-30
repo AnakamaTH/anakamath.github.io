@@ -71,54 +71,6 @@
       font-size: 1.1rem;
       color: #1db954;
     }
-    /* Speed control styles */
-    #speedControl {
-      width: 100%;
-      margin-top: 0.3rem;
-    }
-    #speedControlLabel {
-      font-weight: 600;
-      display: block;
-      margin-top: 1rem;
-    }
-    #speedValue {
-      color: #1db954;
-      font-weight: 700;
-      margin-left: 0.5rem;
-    }
-    #loadURL {
-      background-color: #1db954;
-      color: white;
-      border: none;
-      padding: 0.6rem 1.2rem;
-      border-radius: 25px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      margin-top: 0.25rem;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-      font-size: 1rem;
-    }
-    #loadURL:hover,
-    #loadURL:focus {
-      background-color: #1ed760;
-      outline: none;
-      box-shadow: 0 4px 12px rgba(30,215,96,0.6);
-    }
-    #midiURL {
-      width: 100%;
-      padding: 0.5rem 0.75rem;
-      border: 1px solid #ccc;
-      border-radius: 25px;
-      font-size: 1rem;
-      box-sizing: border-box;
-      transition: border-color 0.3s ease;
-    }
-    #midiURL:focus {
-      border-color: #1db954;
-      outline: none;
-      box-shadow: 0 0 6px #1db954;
-    }
   </style>
 </head>
 <body>
@@ -146,18 +98,6 @@
 
     <div id="currentTitle">Still Alive Radio Remix MIDI Version (AnakamaTH)</div>
 
-    <label id="speedControlLabel" for="speedControl">
-      Playback Speed: <span id="speedValue">1.00x</span>
-    </label>
-    <input
-      type="range"
-      id="speedControl"
-      min="0.25"
-      max="3"
-      step="0.05"
-      value="1"
-    />
-
     <div class="uploader">
       <h3>Upload MID</h3>
       <label for="midiUpload">Upload a MIDI file:</label>
@@ -183,8 +123,6 @@
     const midiPlayer = document.getElementById("midiPlayer");
     const sampleListDiv = document.getElementById("sampleList");
     const currentTitle = document.getElementById("currentTitle");
-    const speedControl = document.getElementById("speedControl");
-    const speedValue = document.getElementById("speedValue");
 
     const samples = [
       {
@@ -225,8 +163,6 @@
       currentSampleIndex = index;
       midiPlayer.src = samples[index].url;
       currentTitle.textContent = samples[index].title;
-      speedControl.value = 1;
-      speedValue.textContent = "1.00x";
 
       Array.from(sampleListDiv.children).forEach((child, i) => {
         if (i === index) {
@@ -237,8 +173,6 @@
           child.setAttribute("aria-pressed", "false");
         }
       });
-
-      if (midiPlayer.setPlaybackRate) midiPlayer.setPlaybackRate(1);
     }
 
     document.getElementById("midiUpload").addEventListener("change", function(event) {
@@ -247,15 +181,11 @@
         const objectUrl = URL.createObjectURL(file);
         midiPlayer.src = objectUrl;
         currentTitle.textContent = `Uploaded: ${file.name}`;
-        speedControl.value = 1;
-        speedValue.textContent = "1.00x";
 
         Array.from(sampleListDiv.children).forEach(child => {
           child.classList.remove("active");
           child.setAttribute("aria-pressed", "false");
         });
-
-        if (midiPlayer.setPlaybackRate) midiPlayer.setPlaybackRate(1);
       }
     });
 
@@ -264,37 +194,67 @@
       if (url && (url.endsWith(".mid") || url.endsWith(".midi"))) {
         midiPlayer.src = url;
         currentTitle.textContent = `Loaded from URL: ${url}`;
-        speedControl.value = 1;
-        speedValue.textContent = "1.00x";
 
         Array.from(sampleListDiv.children).forEach(child => {
           child.classList.remove("active");
           child.setAttribute("aria-pressed", "false");
         });
-
-        if (midiPlayer.setPlaybackRate) midiPlayer.setPlaybackRate(1);
       } else {
         alert("Please enter a valid MIDI file URL ending in .mid or .midi");
       }
     });
 
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+    });
 
-speedControl.addEventListener("input", () => {
-  const speed = parseFloat(speedControl.value);
-  speedValue.textContent = speed.toFixed(2) + "x";
-  if (window.Tone && Tone.Transport) {
-    Tone.Transport.playbackRate = speed;
-  }
-});
-
-function resetSpeed() {
-  speedControl.value = 1;
-  speedValue.textContent = "1.00x";
-  if (window.Tone && Tone.Transport) {
-    Tone.Transport.playbackRate = 1;
-  }
-}
-
+    renderSampleList();
   </script>
+  
+ <style>
+  .uploader label[for="midiURL"] {
+    margin-top: 1rem;
+    font-weight: 600;
+    display: block;
+  }
+
+  #loadURL {
+    background-color: #1db954;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 0.25rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    font-size: 1rem;
+  }
+
+  #loadURL:hover,
+  #loadURL:focus {
+    background-color: #1ed760;
+    outline: none;
+    box-shadow: 0 4px 12px rgba(30,215,96,0.6);
+  }
+
+  #midiURL {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+  }
+
+  #midiURL:focus {
+    border-color: #1db954;
+    outline: none;
+    box-shadow: 0 0 6px #1db954;
+  }
+</style>
+
 </body>
 </html>
