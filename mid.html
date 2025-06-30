@@ -6,14 +6,12 @@
   <title>Anakama</title>
   <link rel="icon" href="favicon.png" type="image/png" />
 
-  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://anakamath.github.io" />
   <meta property="og:title" content="AnakamaTH Mid Player" />
-  <meta property="og:description" content="AnakamaTheHedgehog Official Website / Main Page" />
+  <meta property="og:description" content="AnakamaTH MIDI Player" />
   <meta property="og:image" content="https://anakamath.github.io/og-image.png" />
 
-  <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image" />
   <meta property="twitter:url" content="https://anakamath.github.io/mid" />
   <meta property="twitter:title" content="AnakamaTH Mid Player" />
@@ -34,7 +32,6 @@
       margin: 0.5rem 0;
       display: block;
     }
-    /* Spotify-like sample list styles */
     .sample-list {
       margin-top: 2rem;
       border-top: 1px solid #ccc;
@@ -58,7 +55,7 @@
       background-color: #eee;
     }
     .sample-item.active {
-      background-color: #4caf50;
+      background-color: #1db954;
       color: white;
       font-weight: 600;
     }
@@ -67,6 +64,12 @@
       text-align: right;
       color: #888;
       font-size: 0.9rem;
+    }
+    #currentTitle {
+      margin-top: 1rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #1db954;
     }
   </style>
 </head>
@@ -93,6 +96,8 @@
     </midi-player>
     <midi-visualizer type="piano-roll" id="myVisualizer"></midi-visualizer>
 
+    <div id="currentTitle">Still Alive Radio Remix MIDI Version (AnakamaTH)</div>
+
     <div class="uploader">
       <h3>Upload MID</h3>
       <label for="midiUpload">Upload a MIDI file:</label>
@@ -105,8 +110,7 @@
 
     <section class="sample-list" aria-label="Other MIDI list">
       <h3>Songs From the Website</h3>
-      <div id="sampleList">
-      </div>
+      <div id="sampleList"></div>
     </section>
   </main>
 
@@ -114,14 +118,12 @@
     <p>&copy; 2025 Anakama — All rights reserved.</p>
   </footer>
 
-  <!-- MIDI & Scripts -->
   <script src="https://cdn.jsdelivr.net/combine/npm/tone@14.7.58,npm/@magenta/music@1.23.1/es6/core.js,npm/focus-visible@5,npm/html-midi-player@1.4.0"></script>
   <script>
     const midiPlayer = document.getElementById("midiPlayer");
     const sampleListDiv = document.getElementById("sampleList");
     const currentTitle = document.getElementById("currentTitle");
 
-    // Sample MIDI list: title and URL
     const samples = [
       {
         title: "Still Alive Radio Remix MIDI Version (AnakamaTH)",
@@ -133,9 +135,8 @@
       }
     ];
 
-    // Render sample list
     function renderSampleList() {
-      sampleListDiv.innerHTML = ""; // Clear old
+      sampleListDiv.innerHTML = "";
       samples.forEach((sample, index) => {
         const div = document.createElement("div");
         div.classList.add("sample-item");
@@ -157,14 +158,12 @@
 
     let currentSampleIndex = 0;
 
-    // Change sample and update UI
     function selectSample(index) {
       if (index === currentSampleIndex) return;
       currentSampleIndex = index;
       midiPlayer.src = samples[index].url;
       currentTitle.textContent = samples[index].title;
 
-      // Update active highlight
       Array.from(sampleListDiv.children).forEach((child, i) => {
         if (i === index) {
           child.classList.add("active");
@@ -176,7 +175,6 @@
       });
     }
 
-    // Local file upload
     document.getElementById("midiUpload").addEventListener("change", function(event) {
       const file = event.target.files[0];
       if (file) {
@@ -184,7 +182,6 @@
         midiPlayer.src = objectUrl;
         currentTitle.textContent = `Uploaded: ${file.name}`;
 
-        // Remove active highlight from sample list
         Array.from(sampleListDiv.children).forEach(child => {
           child.classList.remove("active");
           child.setAttribute("aria-pressed", "false");
@@ -192,14 +189,12 @@
       }
     });
 
-    // Load from URL
     document.getElementById("loadURL").addEventListener("click", function() {
       const url = document.getElementById("midiURL").value.trim();
       if (url && (url.endsWith(".mid") || url.endsWith(".midi"))) {
         midiPlayer.src = url;
         currentTitle.textContent = `Loaded from URL: ${url}`;
 
-        // Remove active highlight from sample list
         Array.from(sampleListDiv.children).forEach(child => {
           child.classList.remove("active");
           child.setAttribute("aria-pressed", "false");
@@ -209,19 +204,14 @@
       }
     });
 
-    // Theme toggle
     document.getElementById("theme-toggle").addEventListener("click", () => {
       document.body.classList.toggle("dark");
     });
 
-    // Initial render
     renderSampleList();
   </script>
   
  <style>
-  /* Your existing styles... */
-
-  /* New styles for Load from URL input & button */
   .uploader label[for="midiURL"] {
     margin-top: 1rem;
     font-weight: 600;
