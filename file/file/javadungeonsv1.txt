@@ -1,1 +1,7 @@
 §a(Latest)
+
+
+-- Template --
+
+§c(Outdated)
+§a(Latest)
