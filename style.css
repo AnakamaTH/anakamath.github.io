@@ -351,3 +351,44 @@ nav a[aria-current="page"] {
     font-size: 0.8rem;
   }
 }
+
+.expandable {
+  position: relative;
+  display: inline-block;
+}
+
+.expand-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  border: none;
+  background: #222;
+  color: #fff;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.extra-links {
+  display: none;
+  margin-top: 10px;
+}
+
+.extra-links a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-top: 5px;
+  background: var(--card-bg, #f9f9f9);
+}
+.extra-links img {
+  width: 32px;
+  height: 32px;
+}
+

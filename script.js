@@ -1,4 +1,4 @@
-// Theme toggle logic
+
 const toggleBtn = document.getElementById("theme-toggle");
 
 function setTheme(dark) {
@@ -11,8 +11,8 @@ toggleBtn.addEventListener("click", () => {
   setTheme(!isDark);
 });
 
-// Load saved theme on page load
 window.addEventListener("DOMContentLoaded", () => {
   const prefersDark = localStorage.getItem("darkMode") === "true";
   setTheme(prefersDark);
 });
+
