@@ -99,7 +99,7 @@ footer {
   border-top: 2px solid rgba(255,255,255,0.1);
 }
 
-#theme-toggle {
+#download-all-01bhop {
   background: none;
   border: 2px solid var(--accent);
   color: var(--accent);
@@ -110,7 +110,7 @@ footer {
   transition: background var(--transition-speed), color var(--transition-speed);
 }
 
-#theme-toggle:hover {
+#download-all-01bhop:hover {
   background: var(--accent);
   color: #fff;
 }
@@ -391,4 +391,3 @@ nav a[aria-current="page"] {
   width: 32px;
   height: 32px;
 }
-

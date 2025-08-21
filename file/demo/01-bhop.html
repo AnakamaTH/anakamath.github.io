@@ -8,15 +8,26 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
- <main>
-     <h1>Portal Bhop Mode | Glitchless | 00/01</h1>
-   <div class="card-grid">
-      <a href="01-bhop/1.dem">Demo 1: Vault</a>
-	  </div>
-	    <div class="card-grid">
-      <a href="01-bhop/2.dem">Demo 2</a>
-		</div>
-	    <div class="card-grid">
-	      <a href="all.html">Download all</a>	
+  <main>
+    <h1>Downloading…</h1>
+    <p>The demos should start downloading automatically, thanks for being here to verify it!</p>
+
+    <script>
+      function triggerDownload(url, filename) {
+        const a = document.createElement("a");
+        a.href = url;
+        a.setAttribute("download", filename || "");
+        a.style.display = "none";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      }
+
+      window.onload = () => {
+        setTimeout(() => triggerDownload("https://anakamath.github.io/file/demo/01-bhop/vault.dem", "vault.dem"), 500);
+        setTimeout(() => triggerDownload("https://anakamath.github.io/file/demo/01-bhop/run.dem", "run.dem"), 1500);
+      };
+    </script>
+  </main>
 </body>
 </html>
