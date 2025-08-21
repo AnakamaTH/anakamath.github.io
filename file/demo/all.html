@@ -8,11 +8,22 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
- <main>
-<script>
-  window.location.href = "https://anakamath.github.io/file/demo/01-bhop/vault.dem"; 
-  window.location.href = "https://anakamath.github.io/file/demo/01-bhop/run.dem"
-</script>
+  <main>
+    <script>
+      function triggerDownload(url, filename) {
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = filename || "";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      }
 
+      window.onload = () => {
+        triggerDownload("https://anakamath.github.io/file/demo/01-bhop/vault.dem", "vault.dem");
+        triggerDownload("https://anakamath.github.io/file/demo/01-bhop/run.dem", "run.dem");
+      };
+    </script>
+  </main>
 </body>
 </html>
