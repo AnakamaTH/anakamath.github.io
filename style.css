@@ -535,3 +535,42 @@ nav a:hover {
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+#last-runs ul {
+  list-style: none;
+  padding: 0;
+}
+
+#last-runs li {
+  margin: 0.5rem 0;
+}
+
+#last-runs a {
+  color: var(--accent, #2ecc71);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+#last-runs a:hover {
+  text-decoration: underline;
+}
+
+
+
+
+
+
+
+
+
