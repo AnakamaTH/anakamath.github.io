@@ -50,6 +50,12 @@
 </section>
 
 <script>
+<section id="last-runs">
+  <h2>Recent Runs</h2>
+  <div id="runs-grid" class="runs-grid"></div>
+</section>
+
+<script>
 document.addEventListener("DOMContentLoaded", async () => {
   const username = "Anakama"; 
   const runsGrid = document.getElementById("runs-grid");
@@ -60,12 +66,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     "3693226l"
   ];
 
-  async function fetchLastRuns() {
   try {
+    // Get user ID
     const userResp = await fetch(`https://www.speedrun.com/api/v1/users/${username}`);
     const userData = await userResp.json();
     const userId = userData.data.id;
 
+    // Get last 10 runs
     const runsResp = await fetch(`https://www.speedrun.com/api/v1/runs?user=${userId}&max=10&orderby=submitted&direction=desc`);
     const runsData = await runsResp.json();
 
@@ -74,41 +81,37 @@ document.addEventListener("DOMContentLoaded", async () => {
     for (const run of runsData.data) {
       if (!allowedGames.includes(run.game)) continue;
 
-      // Fetch game info
+      // Game info
       const gameResp = await fetch(`https://www.speedrun.com/api/v1/games/${run.game}`);
       const gameData = await gameResp.json();
       const gameName = gameData.data.names.international;
+      const gameThumb = gameData.data.assets?.['cover-medium']?.uri || '';
 
-      // Fetch category info
+      // Category info
       const catResp = await fetch(`https://www.speedrun.com/api/v1/categories/${run.category}`);
       const catData = await catResp.json();
       const categoryName = catData.data.name;
 
-      // Run time & place
-      const runTime = run.times?.primary_t ? formatTime(run.times.primary_t) : "N/A";
-      const place = run.place ?? "N/A";
-
-      // Video embed
-      const videoLink = run.videos?.links?.[0]?.uri || run.videos?.text || null;
-      let videoEmbed = "";
-      if (videoLink) {
-        if (videoLink.includes("youtube.com")) {
-          const videoId = new URL(videoLink).searchParams.get("v");
-          videoEmbed = `<iframe width="320" height="180" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>`;
-        } else if (videoLink.includes("twitch.tv")) {
-          videoEmbed = `<a href="${videoLink}" target="_blank">Watch on Twitch</a>`;
-        }
+      // Video link
+      let videoUrl = run.weblink;
+      if (run.videos?.links?.length) {
+        const vidLink = run.videos.links.find(l => l.uri);
+        if (vidLink) videoUrl = vidLink.uri;
       }
 
+      // Format time
+      const runTime = run.times?.primary_t ? formatTime(run.times.primary_t) : 'N/A';
+
       // Build card
-      const card = document.createElement("div");
+      const card = document.createElement("a");
+      card.href = videoUrl;
+      card.target = "_blank";
       card.className = "card";
       card.innerHTML = `
-        <a href="${run.weblink}" target="_blank">
-          <h3>${categoryName} - Place: ${place}</h3>
-          <p>Time: ${runTime}</p>
-          ${videoEmbed}
-        </a>
+        ${gameThumb ? `<img src="${gameThumb}" alt="${gameName} cover">` : ''}
+        <span class="game-name">${gameName}</span>
+        <span class="category">${categoryName}</span>
+        <span class="time">${runTime}</span>
       `;
       runsGrid.appendChild(card);
     }
@@ -116,18 +119,18 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error("Error fetching last runs:", err);
     runsGrid.innerHTML = "<p>Unable to load last runs.</p>";
   }
-}
 
-// Helper to format seconds
-function formatTime(seconds) {
-  const h = Math.floor(seconds / 3600);
-  const m = Math.floor((seconds % 3600) / 60);
-  const s = Math.floor(seconds % 60);
-  return h > 0 ? `${h}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`
-               : `${m}:${s.toString().padStart(2,'0')}`;
-}
+  function formatTime(seconds) {
+    const h = Math.floor(seconds / 3600);
+    const m = Math.floor((seconds % 3600) / 60);
+    const s = Math.floor(seconds % 60);
+    return h > 0
+      ? `${h}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`
+      : `${m}:${s.toString().padStart(2,'0')}`;
+  }
+});
+</script>
 
-fetchLastRuns();
 </script>
 
   <!-- yes, latest runs is vibecoded --> 
