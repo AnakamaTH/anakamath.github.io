@@ -1,4 +1,3 @@
-<script>
 const username = "Anakama"; 
 const runsGrid = document.getElementById("runs-grid");
 
@@ -16,7 +15,7 @@ async function fetchLastRuns() {
     const userData = await userResp.json();
     const userId = userData.data.id;
 
-    // 2️⃣ Get last 10 runs (we will filter)
+    // 2️⃣ Get last 10 runs (filtered)
     const runsResp = await fetch(`https://www.speedrun.com/api/v1/runs?user=${userId}&max=10&orderby=submitted&direction=desc`);
     const runsData = await runsResp.json();
 
@@ -39,9 +38,12 @@ async function fetchLastRuns() {
       // Format time
       const runTime = run.times?.primary_t ? formatTime(run.times.primary_t) : 'N/A';
 
+      // Get video link (YouTube or other)
+      const videoUrl = run.videos?.links?.[0]?.uri || run.weblink;
+
       // Build card
       const card = document.createElement("a");
-      card.href = run.weblink;
+      card.href = videoUrl;
       card.target = "_blank";
       card.className = "card";
       card.innerHTML = `
@@ -68,4 +70,3 @@ function formatTime(seconds) {
 }
 
 fetchLastRuns();
-</script>
