@@ -392,3 +392,26 @@ nav a[aria-current="page"] {
   height: 32px;
 }
 
+header {
+  background: #1e1e1e;
+  color: #fff;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* center contents */
+  gap: 2rem; /* space between logo + nav */
+  flex-wrap: wrap; /* keeps layout clean on smaller screens */
+}
+
+header .logo {
+  flex-shrink: 0; /* logo won't shrink */
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+
