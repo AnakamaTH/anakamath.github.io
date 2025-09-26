@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", async () => {
-  const moderatedGames = ["v1p4rp18", "v1po9o76"];
+  const moderatedGames = ["m1mek93d"];
   const moderatedGrid = document.getElementById("moderated-grid");
 
   try {
