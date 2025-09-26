@@ -149,19 +149,22 @@ document.addEventListener("DOMContentLoaded", async () => {
         // Run time
         const runTime = run.times?.primary_t ? formatTime(run.times.primary_t) : "N/A";
 
-        // Build card
-        const card = document.createElement("div");
-        card.className = "run-card";
-        card.innerHTML = `
-          ${gameThumb ? `<img src="${gameThumb}" alt="${gameName} cover">` : ''}
-          <div class="info">
-            <span class="game-name">${gameName}</span>
-            <span class="category">${categoryName}</span>
-            <span class="time">Time: ${runTime}</span>
-            <span class="video-info">${videoText}</span>
-          </div>
-        `;
-        runsGrid.appendChild(card);
+// Build card
+const card = document.createElement("a");
+card.className = "run-card";
+card.href = run.weblink;          // ✅ run page
+card.target = "_blank";           // opens in new tab
+card.innerHTML = `
+  ${gameThumb ? `<img src="${gameThumb}" alt="${gameName} cover">` : ''}
+  <div class="info">
+    <span class="game-name">${gameName}</span>
+    <span class="category">${categoryName}</span>
+    <span class="time">Time: ${runTime}</span>
+    <span class="video-info">${videoUrl ? 'Video Available' : 'No Video'}</span>
+  </div>
+`;
+runsGrid.appendChild(card);
+
       }
     } catch (err) {
       console.error("Error fetching last runs:", err);
