@@ -49,6 +49,68 @@
   <div id="runs-grid" class="runs-grid"></div>
 </section>
 
+<section id="moderated-games">
+  <h2>Moderated Games</h2>
+  <div id="moderated-grid" class="runs-grid"></div>
+</section>
+
+<style>
+const moderatedGames = [
+  "v1p4rp18", // Minecraft
+  "v1po9o76", // Portal
+  // add more IDs
+];
+
+async function fetchModeratedRuns() {
+  try {
+    const userResp = await fetch(`https://www.speedrun.com/api/v1/users/${username}`);
+    const userData = await userResp.json();
+    const userId = userData.data.id;
+
+    const runsResp = await fetch(`https://www.speedrun.com/api/v1/runs?user=${userId}&max=20&orderby=submitted&direction=desc`);
+    const runsData = await runsResp.json();
+
+    const moderatedGrid = document.getElementById("moderated-grid");
+    moderatedGrid.innerHTML = "";
+
+    for (const run of runsData.data) {
+      if (!moderatedGames.includes(run.game)) continue;
+
+      const gameResp = await fetch(`https://www.speedrun.com/api/v1/games/${run.game}`);
+      const gameData = await gameResp.json();
+      const gameName = gameData.data.names.international;
+      const gameThumb = gameData.data.assets?.['cover-medium']?.uri || "";
+
+      const catResp = await fetch(`https://www.speedrun.com/api/v1/categories/${run.category}`);
+      const catData = await catResp.json();
+      const categoryName = catData.data.name;
+
+      const videoUrl = run.videos?.links?.[0]?.uri || null;
+      const videoText = videoUrl ? 'Video Available' : 'No Video';
+      const runTime = run.times?.primary_t ? formatTime(run.times.primary_t) : "N/A";
+
+      const card = document.createElement("a");
+      card.className = "run-card";
+      card.href = run.weblink;  // run link
+      card.target = "_blank";
+      card.innerHTML = `
+        ${gameThumb ? `<img src="${gameThumb}" alt="${gameName} cover">` : ''}
+        <div class="info">
+          <span class="game-name">${gameName}</span>
+          <span class="category">${categoryName}</span>
+          <span class="time">Time: ${runTime}</span>
+          <span class="video-info">${videoText}</span>
+        </div>
+      `;
+      moderatedGrid.appendChild(card);
+    }
+
+  } catch (err) {
+    console.error("Error fetching moderated runs:", err);
+  }
+}
+
+</style>
 <style>
 .runs-grid {
   display: grid;
