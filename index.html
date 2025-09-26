@@ -127,47 +127,71 @@ document.addEventListener("DOMContentLoaded", async () => {
     "3693226l"
   ];
 
-  try {
-    const userResp = await fetch(`https://www.speedrun.com/api/v1/users/${username}`);
-    const userData = await userResp.json();
-    const userId = userData.data.id;
+  async function fetchLastRuns() {
+    try {
+      // Get user ID
+      const userResp = await fetch(`https://www.speedrun.com/api/v1/users/${username}`);
+      const userData = await userResp.json();
+      const userId = userData.data.id;
 
-    const runsResp = await fetch(`https://www.speedrun.com/api/v1/runs?user=${userId}&max=10&orderby=submitted&direction=desc`);
-    const runsData = await runsResp.json();
+      // Get last 10 runs
+      const runsResp = await fetch(`https://www.speedrun.com/api/v1/runs?user=${userId}&max=10&orderby=submitted&direction=desc`);
+      const runsData = await runsResp.json();
 
-    runsGrid.innerHTML = "";
+      runsGrid.innerHTML = "";
 
-    for (const run of runsData.data) {
-      if (!allowedGames.includes(run.game)) continue;
+      for (const run of runsData.data) {
+        if (!allowedGames.includes(run.game)) continue;
 
-      const gameResp = await fetch(`https://www.speedrun.com/api/v1/games/${run.game}`);
-      const gameData = await gameResp.json();
-      const gameName = gameData.data.names.international;
-      const gameThumb = gameData.data.assets?.['cover-medium']?.uri || '';
+        // Game info
+        const gameResp = await fetch(`https://www.speedrun.com/api/v1/games/${run.game}`);
+        const gameData = await gameResp.json();
+        const gameName = gameData.data.names.international;
+        const gameThumb = gameData.data.assets?.['cover-medium']?.uri || '';
 
-      const catResp = await fetch(`https://www.speedrun.com/api/v1/categories/${run.category}`);
-      const catData = await catResp.json();
-      const categoryName = catData.data.name;
+        // Category info
+        const catResp = await fetch(`https://www.speedrun.com/api/v1/categories/${run.category}`);
+        const catData = await catResp.json();
+        const categoryName = catData.data.name;
 
-      const runTime = run.times?.primary_t ? formatTime(run.times.primary_t) : 'N/A';
-      const place = run.place ?? 'N/A';
+        // Run time
+        const runTime = run.times?.primary_t ? formatTime(run.times.primary_t) : 'N/A';
 
-      const videoLink = run.videos?.links?.[0]?.uri || null;
+        // Fetch leaderboard to get place
+        let place = "N/A";
+        try {
+          const lbResp = await fetch(`https://www.speedrun.com/api/v1/leaderboards/${run.game}/category/${run.category}?top=100`);
+          const lbData = await lbResp.json();
+          const myRun = lbData.data.runs.find(r => r.run.id === run.id);
+          if (myRun) place = myRun.place;
+        } catch (e) {
+          console.warn("Failed to fetch leaderboard for run:", run.id);
+        }
 
-      const card = document.createElement("div");
-      card.className = "run-card";
-      card.innerHTML = `
-        ${gameThumb ? `<img src="${gameThumb}" alt="${gameName} cover">` : ''}
-        <span class="game-name">${categoryName} - Place: ${place}</span>
-        <span class="time">Time: ${runTime}</span>
-        ${videoLink ? `<a class="video-btn" href="${videoLink}" target="_blank">Watch Video</a>` : ''}
-      `;
-      card.addEventListener("click", () => window.open(run.weblink, "_blank"));
-      runsGrid.appendChild(card);
+        // Video
+        let videoInfo = "No Video";
+        if (run.videos?.links?.length) {
+          const vidLink = run.videos.links.find(l => l.uri);
+          if (vidLink) videoInfo = `<a href="${vidLink.uri}" target="_blank">Watch Video</a>`;
+        }
+
+        // Build card
+        const card = document.createElement("div");
+        card.className = "run-card";
+        card.innerHTML = `
+          ${gameThumb ? `<img src="${gameThumb}" alt="${gameName} cover">` : ''}
+          <span class="game-name">${gameName}</span>
+          <span class="category">${categoryName} - Place: ${place}</span>
+          <span class="time">Time: ${runTime}</span>
+          <span class="video">${videoInfo}</span>
+        `;
+        runsGrid.appendChild(card);
+      }
+
+    } catch (err) {
+      console.error("Error fetching last runs:", err);
+      runsGrid.innerHTML = "<p>Unable to load last runs.</p>";
     }
-  } catch (err) {
-    console.error("Error fetching last runs:", err);
-    runsGrid.innerHTML = "<p>Unable to load last runs.</p>";
   }
 
   function formatTime(seconds) {
@@ -178,6 +202,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       ? `${h}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`
       : `${m}:${s.toString().padStart(2,'0')}`;
   }
+
+  fetchLastRuns();
 });
 </script>
 
