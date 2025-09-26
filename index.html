@@ -51,69 +51,52 @@
 
 <style>
   /* Last runs styles only */
-  #last-runs {
-    margin-top: 2rem;
-    padding: 1rem;
-    background-color: #fff; /* white background */
-    border-radius: 8px;
-  }
-  #last-runs h2 {
-    font-size: 1.5rem;
-    color: #000;
-    margin-bottom: 1rem;
-  }
-  .runs-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1rem;
-  }
-  .run-card {
-    background-color: #fff;
-    border-radius: 8px;
-    padding: 1rem;
-    color: #000;
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    transition: transform 0.2s;
-    cursor: pointer;
-  }
-  .run-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-  }
-  .run-card img {
-    width: 100%;
-    border-radius: 8px;
-    margin-bottom: 0.5rem;
-  }
-  .run-card .game-name {
-    font-weight: bold;
-    margin-top: 0.5rem;
-    text-align: center;
-  }
-  .run-card .category,
-  .run-card .time {
-    font-size: 0.9rem;
-    margin-top: 0.2rem;
-    text-align: center;
-  }
-  .video-btn {
-    margin-top: 0.5rem;
-    padding: 0.3rem 0.6rem;
-    font-size: 0.8rem;
-    border: none;
-    border-radius: 5px;
-    background-color: #2ecc71;
-    color: #fff;
-    cursor: pointer;
-    text-decoration: none;
-  }
-  .video-btn:hover {
-    background-color: #27ae60;
-  }
+.runs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.run-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.run-card img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+
+.run-card .info {
+  text-align: center;
+}
+
+.run-card .game-name {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.run-card .category,
+.run-card .time,
+.run-card .video-info {
+  font-size: 0.9rem;
+  margin-top: 0.2rem;
+}
+
+.run-card a {
+  color: #3498db;
+  text-decoration: none;
+}
+
+.run-card a:hover {
+  text-decoration: underline;
+}
 </style>
 
 <script>
@@ -129,10 +112,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   async function fetchLastRuns() {
     try {
+      // Get user ID
       const userResp = await fetch(`https://www.speedrun.com/api/v1/users/${username}`);
       const userData = await userResp.json();
-	  
       const userId = userData.data.id;
+
+      // Get last 10 runs
       const runsResp = await fetch(`https://www.speedrun.com/api/v1/runs?user=${userId}&max=10&orderby=submitted&direction=desc`);
       const runsData = await runsResp.json();
 
@@ -145,7 +130,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const gameResp = await fetch(`https://www.speedrun.com/api/v1/games/${run.game}`);
         const gameData = await gameResp.json();
         const gameName = gameData.data.names.international;
-        const gameThumb = gameData.data.assets?.['cover-medium']?.uri || '';
+        const gameThumb = gameData.data.assets?.['cover-medium']?.uri || "";
 
         // Category info
         const catResp = await fetch(`https://www.speedrun.com/api/v1/categories/${run.category}`);
@@ -154,34 +139,22 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         // Video info
         const videoUrl = run.videos?.links?.[0]?.uri || null;
-        const videoText = videoUrl ? "" : "No Video";
+        const videoText = videoUrl ? `<a href="${videoUrl}" target="_blank">Watch Video</a>` : "No Video";
 
         // Run time
         const runTime = run.times?.primary_t ? formatTime(run.times.primary_t) : "N/A";
 
-        // Fetch leaderboard to determine place
-        let place = "N/A";
-        try {
-          const lbResp = await fetch(`https://www.speedrun.com/api/v1/leaderboards/${run.game}/category/${run.category}?top=200`);
-          const lbData = await lbResp.json();
-          const idx = lbData.data.runs.findIndex(r => r.run.id === run.id);
-          place = idx >= 0 ? idx + 1 : ">200";
-        } catch {
-          place = "N/A";
-        }
-
         // Build card
-        const card = document.createElement("a");
-        card.href = run.weblink; // always link to run
-        card.target = "_blank";
-        card.className = "card run-card";
+        const card = document.createElement("div");
+        card.className = "run-card";
         card.innerHTML = `
           ${gameThumb ? `<img src="${gameThumb}" alt="${gameName} cover">` : ''}
-          <span class="game-name">${gameName}</span>
-          <span class="category">${categoryName}</span>
-          <span class="time">Time: ${runTime}</span>
-          <span class="place">Place: ${place}</span>
-          <span class="video-info">${videoText}</span>
+          <div class="info">
+            <span class="game-name">${gameName}</span>
+            <span class="category">${categoryName}</span>
+            <span class="time">Time: ${runTime}</span>
+            <span class="video-info">${videoText}</span>
+          </div>
         `;
         runsGrid.appendChild(card);
       }
