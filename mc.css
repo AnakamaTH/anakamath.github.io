@@ -329,3 +329,60 @@ button#theme-toggle {
   transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
+
+
+//// try
+
+header {
+  background: #1e1e1e;
+  color: #fff;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* logo left, nav center/right */
+  flex-wrap: wrap;
+}
+
+header .logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+/* Make nav centered horizontally */
+nav {
+  display: flex;
+  justify-content: center;
+  flex: 1; /* takes remaining space */
+  gap: 1.5rem;
+}
+
+/* Optional: keep nav links centered on small screens */
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start; /* logo top-left */
+  }
+
+  nav {
+    width: 100%;
+    justify-content: flex-start;
+    margin-top: 0.5rem;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+
+  nav a {
+    margin: 0;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    background: var(--accent);
+    color: #fff;
+  }
+
+  nav a:hover {
+    background-color: #27ae60;
+  }
+}
