@@ -37,6 +37,11 @@
     }
     .track button.play { background: #1bd96a; color: #fff; }
     .track button.pause { background: #e63946; color: #fff; }
+    .time {
+      font-family: monospace;
+      margin-top: 8px;
+      display: block;
+    }
   </style>
 </head>
 <body>
@@ -44,7 +49,7 @@
     <h1 class="logo">Anakama</h1>
     <nav>
       <a href="index.html">Main</a>
-      <a href="" aria-current="page">Projects</a>
+      <a href="projects.html">Projects</a>
       <a href="socials.html">Socials</a>
       <a href="mc.html">Minecraft Tools</a>
       <a href="discord-servers.html">Discord Servers</a>
@@ -61,20 +66,9 @@
         <h2>Unknown Boss Theme</h2>
         <button class="play" data-file="unknown-boss-theme.flac">▶ Play</button>
         <button class="pause" data-file="unknown-boss-theme.flac">⏸ Pause</button>
+        <span class="time" data-file="unknown-boss-theme.flac">00:00 / 00:00</span>
       </div>
-
-  <!--       <div class="track">
-        <h2>Calm Theme</h2>
-        <button class="play" data-file="calm-theme.flac">▶ Play</button>
-        <button class="pause" data-file="calm-theme.flac">⏸ Pause</button>
-      </div>
-
-      <div class="track">
-        <h2>Battle Theme</h2>
-        <button class="play" data-file="battle-theme.flac">▶ Play</button>
-        <button class="pause" data-file="battle-theme.flac">⏸ Pause</button>
-      </div>
-    </section>  -->
+    </section>
   </main>
 
   <footer>
@@ -85,6 +79,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
   <script>
     const sounds = {};
+    const intervals = {};
+
+    function formatTime(secs) {
+      const minutes = Math.floor(secs / 60) || 0;
+      const seconds = Math.floor(secs % 60) || 0;
+      return `${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
+    }
 
     document.querySelectorAll(".play").forEach(btn => {
       btn.addEventListener("click", () => {
@@ -92,7 +93,24 @@
         if (!sounds[file]) {
           sounds[file] = new Howl({
             src: [`assets/${file}`],
-            format: ['flac']
+            format: ['flac'],
+            onplay: () => {
+              const duration = sounds[file].duration();
+              const timeDisplay = document.querySelector(`.time[data-file='${file}']`);
+              intervals[file] = setInterval(() => {
+                const seek = sounds[file].seek() || 0;
+                timeDisplay.textContent = `${formatTime(seek)} / ${formatTime(duration)}`;
+              }, 1000);
+            },
+            onpause: () => {
+              clearInterval(intervals[file]);
+            },
+            onstop: () => {
+              clearInterval(intervals[file]);
+            },
+            onend: () => {
+              clearInterval(intervals[file]);
+            }
           });
         }
         sounds[file].play();
