@@ -51,52 +51,69 @@
 
 <style>
   /* Last runs styles only */
-.runs-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1rem;
-}
-
-.run-card {
-  background: #fff;
-  border-radius: 10px;
-  padding: 1rem;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.run-card img {
-  width: 100%;
-  border-radius: 8px;
-  margin-bottom: 0.5rem;
-}
-
-.run-card .info {
-  text-align: center;
-}
-
-.run-card .game-name {
-  font-weight: bold;
-  font-size: 1.1rem;
-}
-
-.run-card .category,
-.run-card .time,
-.run-card .video-info {
-  font-size: 0.9rem;
-  margin-top: 0.2rem;
-}
-
-.run-card a {
-  color: #3498db;
-  text-decoration: none;
-}
-
-.run-card a:hover {
-  text-decoration: underline;
-}
+  #last-runs {
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: #fff; /* white background */
+    border-radius: 8px;
+  }
+  #last-runs h2 {
+    font-size: 1.5rem;
+    color: #000;
+    margin-bottom: 1rem;
+  }
+  .runs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  .run-card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 1rem;
+    color: #000;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+    cursor: pointer;
+  }
+  .run-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  }
+  .run-card img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+  }
+  .run-card .game-name {
+    font-weight: bold;
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+  .run-card .category,
+  .run-card .time {
+    font-size: 0.9rem;
+    margin-top: 0.2rem;
+    text-align: center;
+  }
+  .video-btn {
+    margin-top: 0.5rem;
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #2ecc71;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .video-btn:hover {
+    background-color: #27ae60;
+  }
 </style>
 
 <script>
