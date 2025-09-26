@@ -7,12 +7,14 @@
   <link rel="icon" href="assets/favicon.png" type="image/png" />
   
   <!-- Social Media Meta -->
+  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="anakamath.github.io" />
   <meta property="og:title" content="AnakamaTH Official Website" />
   <meta property="og:description" content="Anakama Official Website" />
   <meta property="og:image" content="https://anakamath.github.io/assets/og-image.png" />
 
+  <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image" />
   <meta property="twitter:url" content="anakamath.github.io" />
   <meta property="twitter:title" content="AnakamaTH Official Website" />
@@ -22,138 +24,40 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<header>  
-  <h1 class="logo">Anakama</h1>
-  <nav>
-    <a href="" aria-current="page">Main</a>
-    <a href="projects.html">Projects</a>
-    <a href="socials.html">Socials</a>
-    <a href="mc.html">Minecraft Tools</a>
-  </nav>
-</header>
+  <header>  
+    <h1 class="logo">Anakama</h1>
+    <nav>
+      <a href="" aria-current="page">Main</a>
+      <a href="projects.html">Projects</a>
+      <a href="socials.html">Socials</a>
+      <a href="mc.html">Minecraft Tools</a>
+    </nav>
+  </header>
 
-<main>
-<section id="about">
-  <h1>Welcome!</h1>
-  <p>I am Anakama, and this is my main website where you can access all my social platform links and projects!</p>
-  <h1>About Me:</h1>
-  <p>I make speedruns, music, batch scripts, mods, romhacks and fangames!</p>
-</section>
+  <main>
+    <section id="about">
+      <h1>Welcome!</h1>
+      <p>I am Anakama, and this is my main website where you can access all my social platform links and projects!</p>
+      <h1>About Me:</h1>
+      <p>I make speedruns, music, batch scripts, mods, romhacks and fangames!</p>
+    </section>
 
-<section id="last-runs">
-  <h2>Recent Runs</h2>
-  <div id="runs-grid" class="runs-grid"></div>
-</section>
+    <section id="last-runs">
+      <h2>Recent Runs</h2>
+      <div id="runs-grid" class="runs-grid"></div>
+    </section>
 
-<section id="moderated-games">
-  <h2>Moderated Games</h2>
-  <div id="moderated-grid" class="runs-grid"></div>
-</section>
+    <section id="moderated-games">
+      <h2>Moderated Games</h2>
+      <div id="moderated-grid" class="runs-grid"></div>
+    </section>
+  </main>
 
-<style>
-/* GRID AND CARDS */
-.runs-grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
-  gap:1rem;
-}
+  <footer>
+    <p>&copy; 2025 Anakama - All rights reserved.</p>
+  </footer>
 
-.run-card {
-  background:#fff;
-  border-radius:10px;
-  padding:1rem;
-  box-shadow:0 4px 10px rgba(0,0,0,0.1);
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  text-align:center;
-}
-
-.run-card img {
-  width:100%;
-  border-radius:8px;
-  margin-bottom:0.5rem;
-}
-
-.run-card .info span {
-  display:block;
-  margin-top:0.3rem;
-}
-
-.run-card a {
-  color:#3498db;
-  text-decoration:none;
-}
-
-.run-card a:hover {
-  text-decoration:underline;
-}
-
-.moderated-card {
-  background: #fff;
-  border-radius: 10px;
-  padding: 0.5rem;      /* smaller padding */
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 0.95rem;   /* smaller font */
-}
-
-.moderated-card img {
-  width: 150px;          /* smaller thumbnail */
-  border-radius: 8px;
-  margin-bottom: 0.3rem;
-}
-
-.moderated-card .info {
-  text-align: center;
-}
-</style>
-
-<script>
-async function fetchModeratedGames() {
-  const moderatedGrid = document.getElementById("moderated-grid");
-  moderatedGrid.innerHTML = "";
-
-  const moderatedGames = [
-    "m1mek93d"
-  ];
-
-  try {
-    for (const gameId of moderatedGames) {
-      const gameResp = await fetch(`https://www.speedrun.com/api/v1/games/${gameId}`);
-      const gameData = await gameResp.json();
-      const gameName = gameData.data.names.international;
-      const gameThumb = gameData.data.assets?.['cover-medium']?.uri || "";
-
-      const card = document.createElement("div");
-      card.className = "run-card"; // reuse the same card style
-      card.innerHTML = `
-        ${gameThumb ? `<img src="${gameThumb}" alt="${gameName} cover">` : ''}
-        <div class="info">
-          <span class="game-name">${gameName}</span>
-        </div>
-      `;
-      moderatedGrid.appendChild(card);
-    }
-  } catch (err) {
-    console.error("Error fetching moderated games:", err);
-    moderatedGrid.innerHTML = "<p>Unable to load moderated games.</p>";
-  }
-}
-
-// Call it after DOM content loaded
-document.addEventListener("DOMContentLoaded", () => {
-  fetchModeratedGames();
-});
-
-</script>
-
-<footer>
-  <p>&copy; 2025 Anakama - All rights reserved.</p>
-</footer>
-
-<script src="script.js"></script>
+  <script src="runs.js"></script>
+  <script src="moderated.js"></script>
 </body>
 </html>
