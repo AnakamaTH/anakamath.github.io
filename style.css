@@ -535,31 +535,6 @@ nav a:hover {
 }
 
 
-/* Last Runs Section */
-#last-runs {
-  margin-top: 2rem;
-  padding: 1rem;
-  background-color: var(--card-light);
-  border-radius: 8px;
-  transition: background var(--transition-speed), color var(--transition-speed);
-}
-
-body.dark #last-runs {
-  background-color: var(--card-dark);
-  color: var(--text-dark);
-}
-
-#last-runs h2 {
-  font-size: 1.5rem;
-  color: var(--text-light);
-  margin-bottom: 1rem;
-  transition: color var(--transition-speed);
-}
-
-body.dark #last-runs h2 {
-  color: var(--text-dark);
-}
-
 /* Grid for runs */
 .runs-grid {
   display: grid;
