@@ -7,42 +7,38 @@
   <link rel="icon" href="assets/favicon.png" type="image/png" />
   
   <!-- Social Media Meta -->
-	
-<!-- Open Graph / Facebook -->
-<meta property="og:type" content="website" />
-<meta property="og:url" content="anakamath.github.io" />
-<meta property="og:title" content="AnakamaTH Official Website" />
-<meta property="og:description" content="Anakama Official Website" />
-<meta property="og:image" content="https://anakamath.github.io/assets/og-image.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="anakamath.github.io" />
+  <meta property="og:title" content="AnakamaTH Official Website" />
+  <meta property="og:description" content="Anakama Official Website" />
+  <meta property="og:image" content="https://anakamath.github.io/assets/og-image.png" />
 
-<!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content="anakamath.github.io" />
-<meta property="twitter:title" content="AnakamaTH Official Website" />
-<meta property="twitter:description" content="AnakamaTheHedgehog Official Website / Main Page" />
-<meta property="twitter:image" content="https://anakamath.github.io/assets/og-image.png" />
-
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="anakamath.github.io" />
+  <meta property="twitter:title" content="AnakamaTH Official Website" />
+  <meta property="twitter:description" content="AnakamaTheHedgehog Official Website / Main Page" />
+  <meta property="twitter:image" content="https://anakamath.github.io/assets/og-image.png" />
 
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>	
+<header>  
   <h1 class="logo">Anakama</h1>
   <nav>
-	<a href="" aria-current="page">Main</a>
+    <a href="" aria-current="page">Main</a>
     <a href="projects.html">Projects</a>
     <a href="socials.html">Socials</a>
     <a href="mc.html">Minecraft Tools</a>
   </nav>
 </header>
 
- <main>
-  <section id="about">
-    <h1>Welcome!</h1>
-    <p>I am Anakama, and this is my main website where you can access all my social platform links and projects!</p>
-   <h1>About Me:</h1>
-   <p>I make speedruns, music, batch scripts, mods, romhacks and fangames!</p>
-  </section>
+<main>
+<section id="about">
+  <h1>Welcome!</h1>
+  <p>I am Anakama, and this is my main website where you can access all my social platform links and projects!</p>
+  <h1>About Me:</h1>
+  <p>I make speedruns, music, batch scripts, mods, romhacks and fangames!</p>
+</section>
 
 <section id="last-runs">
   <h2>Recent Runs</h2>
@@ -55,143 +51,79 @@
 </section>
 
 <style>
-const moderatedGames = [
-  "v1p4rp18", // Minecraft
-  "v1po9o76", // Portal
-  // add more IDs
-];
-
-async function fetchModeratedRuns() {
-  try {
-    const userResp = await fetch(`https://www.speedrun.com/api/v1/users/${username}`);
-    const userData = await userResp.json();
-    const userId = userData.data.id;
-
-    const runsResp = await fetch(`https://www.speedrun.com/api/v1/runs?user=${userId}&max=20&orderby=submitted&direction=desc`);
-    const runsData = await runsResp.json();
-
-    const moderatedGrid = document.getElementById("moderated-grid");
-    moderatedGrid.innerHTML = "";
-
-    for (const run of runsData.data) {
-      if (!moderatedGames.includes(run.game)) continue;
-
-      const gameResp = await fetch(`https://www.speedrun.com/api/v1/games/${run.game}`);
-      const gameData = await gameResp.json();
-      const gameName = gameData.data.names.international;
-      const gameThumb = gameData.data.assets?.['cover-medium']?.uri || "";
-
-      const catResp = await fetch(`https://www.speedrun.com/api/v1/categories/${run.category}`);
-      const catData = await catResp.json();
-      const categoryName = catData.data.name;
-
-      const videoUrl = run.videos?.links?.[0]?.uri || null;
-      const videoText = videoUrl ? 'Video Available' : 'No Video';
-      const runTime = run.times?.primary_t ? formatTime(run.times.primary_t) : "N/A";
-
-      const card = document.createElement("a");
-      card.className = "run-card";
-      card.href = run.weblink;  // run link
-      card.target = "_blank";
-      card.innerHTML = `
-        ${gameThumb ? `<img src="${gameThumb}" alt="${gameName} cover">` : ''}
-        <div class="info">
-          <span class="game-name">${gameName}</span>
-          <span class="category">${categoryName}</span>
-          <span class="time">Time: ${runTime}</span>
-          <span class="video-info">${videoText}</span>
-        </div>
-      `;
-      moderatedGrid.appendChild(card);
-    }
-
-  } catch (err) {
-    console.error("Error fetching moderated runs:", err);
-  }
-}
-
-</style>
-<style>
+/* GRID AND CARDS */
 .runs-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1rem;
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
+  gap:1rem;
 }
 
 .run-card {
-  background: #fff;
-  border-radius: 10px;
-  padding: 1rem;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  background:#fff;
+  border-radius:10px;
+  padding:1rem;
+  box-shadow:0 4px 10px rgba(0,0,0,0.1);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
 }
 
 .run-card img {
-  width: 100%;
-  border-radius: 8px;
-  margin-bottom: 0.5rem;
-}
-
-.run-card .info {
-  text-align: center;
-}
-
-.run-card .game-name {
-  font-weight: bold;
-  font-size: 1.1rem;
-}
-
-.run-card .category,
-.run-card .time,
-.run-card .video-info {
-  font-size: 0.9rem;
-  margin-top: 0.2rem;
-}
-
-.run-card a {
-  color: #3498db;
-  text-decoration: none;
-}
-
-.run-card a:hover {
-  text-decoration: underline;
+  width:100%;
+  border-radius:8px;
+  margin-bottom:0.5rem;
 }
 
 .run-card .info span {
-  display: block;
-  margin-top: 0.3rem; /* adds space between each line */
+  display:block;
+  margin-top:0.3rem;
 }
 
+.run-card a {
+  color:#3498db;
+  text-decoration:none;
+}
+
+.run-card a:hover {
+  text-decoration:underline;
+}
+
+/* FOOTER */
+footer {
+  width:100%;
+  background:#1e1e1e;
+  color:#ccc;
+  text-align:center;
+  padding:1.5rem 0;
+  font-size:0.9rem;
+  border-top:2px solid rgba(255,255,255,0.1);
+}
 </style>
 
 <script>
 document.addEventListener("DOMContentLoaded", async () => {
   const username = "Anakama"; 
+
+  const allowedGames = ["v1p4rp18","v1po9o76","3693226l"];
+  const moderatedGames = ["m1mek93d"]; // moderated IDs
+
   const runsGrid = document.getElementById("runs-grid");
+  const moderatedGrid = document.getElementById("moderated-grid");
 
-  const allowedGames = [
-    "v1p4rp18",
-    "v1po9o76",
-    "3693226l"
-  ];
-
-  async function fetchLastRuns() {
+  async function fetchRuns(targetGrid, gamesArray) {
     try {
-      // Get user ID
       const userResp = await fetch(`https://www.speedrun.com/api/v1/users/${username}`);
       const userData = await userResp.json();
       const userId = userData.data.id;
 
-      // Get last 10 runs
-      const runsResp = await fetch(`https://www.speedrun.com/api/v1/runs?user=${userId}&max=10&orderby=submitted&direction=desc`);
+      const runsResp = await fetch(`https://www.speedrun.com/api/v1/runs?user=${userId}&max=20&orderby=submitted&direction=desc`);
       const runsData = await runsResp.json();
 
-      runsGrid.innerHTML = "";
+      targetGrid.innerHTML = "";
 
-      for (const run of runsData.data) {
-        if (!allowedGames.includes(run.game)) continue;
+      for(const run of runsData.data) {
+        if(!gamesArray.includes(run.game)) continue;
 
         // Game info
         const gameResp = await fetch(`https://www.speedrun.com/api/v1/games/${run.game}`);
@@ -206,65 +138,48 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         // Video info
         const videoUrl = run.videos?.links?.[0]?.uri || null;
-        const videoText = videoUrl ? `<a href="${videoUrl}" target="_blank">Watch Video</a>` : "No Video";
+        const videoText = videoUrl ? `<a href="${videoUrl}" target="_blank">Video Available</a>` : "No Video";
 
         // Run time
         const runTime = run.times?.primary_t ? formatTime(run.times.primary_t) : "N/A";
 
-// Build card
-const card = document.createElement("a");
-card.className = "run-card";
-card.href = run.weblink;          // ✅ run page
-card.target = "_blank";           // opens in new tab
-card.innerHTML = `
-  ${gameThumb ? `<img src="${gameThumb}" alt="${gameName} cover">` : ''}
-  <div class="info">
-    <span class="game-name">${gameName}</span>
-    <span class="category">${categoryName}</span>
-    <span class="time">Time: ${runTime}</span>
-    <span class="video-info">${videoUrl ? 'Video Available' : 'No Video'}</span>
-  </div>
-`;
-runsGrid.appendChild(card);
-
+        // Build card
+        const card = document.createElement("div");
+        card.className = "run-card";
+        card.innerHTML = `
+          ${gameThumb ? `<img src="${gameThumb}" alt="${gameName} cover">` : ''}
+          <div class="info">
+            <span class="game-name">${gameName}</span>
+            <span class="category">${categoryName}</span>
+            <span class="time">Time: ${runTime}</span>
+            <span class="video-info">${videoText}</span>
+            <span class="run-link"><a href="${run.weblink}" target="_blank">Go to Run</a></span>
+          </div>
+        `;
+        targetGrid.appendChild(card);
       }
-    } catch (err) {
-      console.error("Error fetching last runs:", err);
-      runsGrid.innerHTML = "<p>Unable to load last runs.</p>";
+    } catch(err) {
+      console.error("Error fetching runs:", err);
+      targetGrid.innerHTML = "<p>Unable to load runs.</p>";
     }
   }
 
-  function formatTime(seconds) {
-    const h = Math.floor(seconds / 3600);
-    const m = Math.floor((seconds % 3600) / 60);
-    const s = Math.floor(seconds % 60);
-    return h > 0
-      ? `${h}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`
-      : `${m}:${s.toString().padStart(2,'0')}`;
+  function formatTime(seconds){
+    const h = Math.floor(seconds/3600);
+    const m = Math.floor((seconds%3600)/60);
+    const s = Math.floor(seconds%60);
+    return h>0 ? `${h}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}` : `${m}:${s.toString().padStart(2,'0')}`;
   }
 
-  fetchLastRuns();
+  fetchRuns(runsGrid, allowedGames);
+  fetchRuns(moderatedGrid, moderatedGames);
 });
-
 </script>
 
-  <!-- yes, latest runs is vibecoded --> 
-	 
 <footer>
   <p>&copy; 2025 Anakama - All rights reserved.</p>
 </footer>
 
-	<style>
-		footer {
-  width: 100%; /* span full width */
-  background: #1e1e1e;
-  color: #ccc;
-  text-align: center;
-  padding: 1.5rem 0; /* vertical padding */
-  font-size: 0.9rem;
-  border-top: 2px solid rgba(255,255,255,0.1);
-}
-</style>
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
