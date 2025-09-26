@@ -328,3 +328,53 @@ body:not(.dark) .overlay {
 button#theme-toggle {
   transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* logo left, nav right/centered later */
+  padding: 1rem 2rem;
+  position: relative;
+}
+
+header .logo {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: inherit;
+  flex-shrink: 0;
+}
+
+/* center nav horizontally on desktop */
+header nav {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1.5rem;
+}
+
+/* responsive nav on smaller screens */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start; /* logo top-left */
+  }
+
+  header nav {
+    position: static;
+    transform: none;
+    margin-top: 0.5rem;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+
+  nav a {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    background: var(--accent, #2ecc71);
+    color: #fff;
+    text-align: center;
+    display: block;
+  }
+}
