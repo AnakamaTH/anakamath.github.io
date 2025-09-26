@@ -566,6 +566,51 @@ nav a:hover {
   text-decoration: underline;
 }
 
+#last-runs {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #111;
+  border-radius: 8px;
+}
+
+#last-runs h2 {
+  font-size: 1.5rem;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.runs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.run-card {
+  background-color: #222;
+  border-radius: 8px;
+  padding: 1rem;
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.run-card img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.run-card .game-name {
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+
+.run-card .category,
+.run-card .time {
+  font-size: 0.9rem;
+  margin-top: 0.2rem;
+}
 
 
 
