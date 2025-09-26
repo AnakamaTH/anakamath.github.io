@@ -567,22 +567,35 @@ body.dark #last-runs h2 {
   gap: 1rem;
 }
 
-/* Individual run card */
+#last-runs {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #fff; /* White background */
+  border-radius: 8px;
+}
+
+#last-runs h2 {
+  font-size: 1.5rem;
+  color: #000; /* Black text */
+  margin-bottom: 1rem;
+}
+
+.runs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
 .run-card {
-  background-color: var(--card-light);
+  background-color: #fff; /* White card */
   border-radius: 8px;
   padding: 1rem;
-  color: var(--text-light);
+  color: #000; /* Black text */
   text-decoration: none;
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: background var(--transition-speed), color var(--transition-speed), transform 0.2s;
-}
-
-body.dark .run-card {
-  background-color: var(--card-dark);
-  color: var(--text-dark);
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .run-card img {
@@ -605,15 +618,9 @@ body.dark .run-card {
 
 .run-card:hover {
   transform: translateY(-4px);
-  background-color: var(--accent);
-  color: #fff;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
 
-.run-card:hover .game-name,
-.run-card:hover .category,
-.run-card:hover .time {
-  color: #fff;
-}
 
 
 
