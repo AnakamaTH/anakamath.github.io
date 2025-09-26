@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Anakama - Music</title>
+  <link rel="icon" href="assets/favicon.png" type="image/png" />
+
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Anakama Website | Music" />
+  <meta property="og:description" content="Music I made." />
+  <meta property="og:image" content="https://anakamath.github.io/favicon.png" />
+  <meta property="og:url" content="https://anakamath.github.io/projects" />
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://anakamath.github.io/favicon.png" />
+
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .track {
+      margin: 20px 0;
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      background: #f9f9f9;
+    }
+    .track h2 {
+      margin-bottom: 10px;
+    }
+    .track button {
+      margin-right: 10px;
+      padding: 8px 14px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .track button.play { background: #1bd96a; color: #fff; }
+    .track button.pause { background: #e63946; color: #fff; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 class="logo">Anakama</h1>
+    <nav>
+      <a href="index.html">Main</a>
+      <a href="" aria-current="page">Projects</a>
+      <a href="socials.html">Socials</a>
+      <a href="mc.html">Minecraft Tools</a>
+      <a href="discord-servers.html">Discord Servers</a>
+    </nav>
+	 <div class="logo"></div>
+     <div class="logo"></div>
+  </header>
+
+  <main>
+    <section id="player">
+      <h1>My Music</h1>
+
+      <div class="track">
+        <h2>Unknown Boss Theme</h2>
+        <button class="play" data-file="unknown-boss-theme.flac">▶ Play</button>
+        <button class="pause" data-file="unknown-boss-theme.flac">⏸ Pause</button>
+      </div>
+
+  <!--       <div class="track">
+        <h2>Calm Theme</h2>
+        <button class="play" data-file="calm-theme.flac">▶ Play</button>
+        <button class="pause" data-file="calm-theme.flac">⏸ Pause</button>
+      </div>
+
+      <div class="track">
+        <h2>Battle Theme</h2>
+        <button class="play" data-file="battle-theme.flac">▶ Play</button>
+        <button class="pause" data-file="battle-theme.flac">⏸ Pause</button>
+      </div>
+    </section>  -->
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Anakama - All rights reserved.</p>
+  </footer>
+
+  <!-- Howler.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+  <script>
+    const sounds = {};
+
+    document.querySelectorAll(".play").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const file = btn.dataset.file;
+        if (!sounds[file]) {
+          sounds[file] = new Howl({
+            src: [`assets/${file}`],
+            format: ['flac']
+          });
+        }
+        sounds[file].play();
+      });
+    });
+
+    document.querySelectorAll(".pause").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const file = btn.dataset.file;
+        if (sounds[file]) {
+          sounds[file].pause();
+        }
+      });
+    });
+  </script>
+
+  <script src="script.js"></script>
+</body>
+</html>
