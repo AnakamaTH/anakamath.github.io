@@ -129,12 +129,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   async function fetchLastRuns() {
     try {
-      // Get user ID
       const userResp = await fetch(`https://www.speedrun.com/api/v1/users/${username}`);
       const userData = await userResp.json();
+	  
       const userId = userData.data.id;
-
-      // Get last 10 runs
       const runsResp = await fetch(`https://www.speedrun.com/api/v1/runs?user=${userId}&max=10&orderby=submitted&direction=desc`);
       const runsData = await runsResp.json();
 
@@ -154,40 +152,39 @@ document.addEventListener("DOMContentLoaded", async () => {
         const catData = await catResp.json();
         const categoryName = catData.data.name;
 
-        // Run time
-        const runTime = run.times?.primary_t ? formatTime(run.times.primary_t) : 'N/A';
+        // Video info
+        const videoUrl = run.videos?.links?.[0]?.uri || null;
+        const videoText = videoUrl ? "" : "No Video";
 
-        // Fetch leaderboard to get place
+        // Run time
+        const runTime = run.times?.primary_t ? formatTime(run.times.primary_t) : "N/A";
+
+        // Fetch leaderboard to determine place
         let place = "N/A";
         try {
-          const lbResp = await fetch(`https://www.speedrun.com/api/v1/leaderboards/${run.game}/category/${run.category}?top=100`);
+          const lbResp = await fetch(`https://www.speedrun.com/api/v1/leaderboards/${run.game}/category/${run.category}?top=200`);
           const lbData = await lbResp.json();
-          const myRun = lbData.data.runs.find(r => r.run.id === run.id);
-          if (myRun) place = myRun.place;
-        } catch (e) {
-          console.warn("Failed to fetch leaderboard for run:", run.id);
-        }
-
-        // Video
-        let videoInfo = "No Video";
-        if (run.videos?.links?.length) {
-          const vidLink = run.videos.links.find(l => l.uri);
-          if (vidLink) videoInfo = `<a href="${vidLink.uri}" target="_blank">Watch Video</a>`;
+          const idx = lbData.data.runs.findIndex(r => r.run.id === run.id);
+          place = idx >= 0 ? idx + 1 : ">200";
+        } catch {
+          place = "N/A";
         }
 
         // Build card
-        const card = document.createElement("div");
-        card.className = "run-card";
+        const card = document.createElement("a");
+        card.href = run.weblink; // always link to run
+        card.target = "_blank";
+        card.className = "card run-card";
         card.innerHTML = `
           ${gameThumb ? `<img src="${gameThumb}" alt="${gameName} cover">` : ''}
           <span class="game-name">${gameName}</span>
-          <span class="category">${categoryName} - Place: ${place}</span>
+          <span class="category">${categoryName}</span>
           <span class="time">Time: ${runTime}</span>
-          <span class="video">${videoInfo}</span>
+          <span class="place">Place: ${place}</span>
+          <span class="video-info">${videoText}</span>
         `;
         runsGrid.appendChild(card);
       }
-
     } catch (err) {
       console.error("Error fetching last runs:", err);
       runsGrid.innerHTML = "<p>Unable to load last runs.</p>";
@@ -205,6 +202,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   fetchLastRuns();
 });
+
 </script>
 
   <!-- yes, latest runs is vibecoded --> 
