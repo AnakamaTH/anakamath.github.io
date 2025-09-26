@@ -102,78 +102,42 @@ footer {
 </style>
 
 <script>
-document.addEventListener("DOMContentLoaded", async () => {
-  const username = "Anakama"; 
-
-  const allowedGames = ["v1p4rp18","v1po9o76","3693226l"];
-  const moderatedGames = ["m1mek93d"]; // moderated IDs
-
-  const runsGrid = document.getElementById("runs-grid");
+async function fetchModeratedGames() {
   const moderatedGrid = document.getElementById("moderated-grid");
+  moderatedGrid.innerHTML = "";
 
-  async function fetchRuns(targetGrid, gamesArray) {
-    try {
-      const userResp = await fetch(`https://www.speedrun.com/api/v1/users/${username}`);
-      const userData = await userResp.json();
-      const userId = userData.data.id;
+  const moderatedGames = [
+    "m1mek93d"
+  ];
 
-      const runsResp = await fetch(`https://www.speedrun.com/api/v1/runs?user=${userId}&max=20&orderby=submitted&direction=desc`);
-      const runsData = await runsResp.json();
+  try {
+    for (const gameId of moderatedGames) {
+      const gameResp = await fetch(`https://www.speedrun.com/api/v1/games/${gameId}`);
+      const gameData = await gameResp.json();
+      const gameName = gameData.data.names.international;
+      const gameThumb = gameData.data.assets?.['cover-medium']?.uri || "";
 
-      targetGrid.innerHTML = "";
-
-      for(const run of runsData.data) {
-        if(!gamesArray.includes(run.game)) continue;
-
-        // Game info
-        const gameResp = await fetch(`https://www.speedrun.com/api/v1/games/${run.game}`);
-        const gameData = await gameResp.json();
-        const gameName = gameData.data.names.international;
-        const gameThumb = gameData.data.assets?.['cover-medium']?.uri || "";
-
-        // Category info
-        const catResp = await fetch(`https://www.speedrun.com/api/v1/categories/${run.category}`);
-        const catData = await catResp.json();
-        const categoryName = catData.data.name;
-
-        // Video info
-        const videoUrl = run.videos?.links?.[0]?.uri || null;
-        const videoText = videoUrl ? `<a href="${videoUrl}" target="_blank">Video Available</a>` : "No Video";
-
-        // Run time
-        const runTime = run.times?.primary_t ? formatTime(run.times.primary_t) : "N/A";
-
-        // Build card
-        const card = document.createElement("div");
-        card.className = "run-card";
-        card.innerHTML = `
-          ${gameThumb ? `<img src="${gameThumb}" alt="${gameName} cover">` : ''}
-          <div class="info">
-            <span class="game-name">${gameName}</span>
-            <span class="category">${categoryName}</span>
-            <span class="time">Time: ${runTime}</span>
-            <span class="video-info">${videoText}</span>
-            <span class="run-link"><a href="${run.weblink}" target="_blank">Go to Run</a></span>
-          </div>
-        `;
-        targetGrid.appendChild(card);
-      }
-    } catch(err) {
-      console.error("Error fetching runs:", err);
-      targetGrid.innerHTML = "<p>Unable to load runs.</p>";
+      const card = document.createElement("div");
+      card.className = "run-card"; // reuse the same card style
+      card.innerHTML = `
+        ${gameThumb ? `<img src="${gameThumb}" alt="${gameName} cover">` : ''}
+        <div class="info">
+          <span class="game-name">${gameName}</span>
+        </div>
+      `;
+      moderatedGrid.appendChild(card);
     }
+  } catch (err) {
+    console.error("Error fetching moderated games:", err);
+    moderatedGrid.innerHTML = "<p>Unable to load moderated games.</p>";
   }
+}
 
-  function formatTime(seconds){
-    const h = Math.floor(seconds/3600);
-    const m = Math.floor((seconds%3600)/60);
-    const s = Math.floor(seconds%60);
-    return h>0 ? `${h}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}` : `${m}:${s.toString().padStart(2,'0')}`;
-  }
-
-  fetchRuns(runsGrid, allowedGames);
-  fetchRuns(moderatedGrid, moderatedGames);
+// Call it after DOM content loaded
+document.addEventListener("DOMContentLoaded", () => {
+  fetchModeratedGames();
 });
+
 </script>
 
 <footer>
