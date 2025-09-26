@@ -43,7 +43,55 @@
    <h1>About Me:</h1>
    <p>I make speedruns, music, batch scripts, mods, romhacks and fangames!</p>
   </section>
- 
+
+<section id="last-runs" class="container">
+  <h2>Last Runs</h2>
+  <ul id="runs-list">
+  </ul>
+</section>
+
+	 <script>
+const username = "Anakama";
+const runsList = document.getElementById("runs-list");
+
+async function fetchLastRuns() {
+  try {
+    // Fetch user data to get ID
+    const userResp = await fetch(`https://www.speedrun.com/api/v1/users/${username}`);
+    const userData = await userResp.json();
+    const userId = userData.data.id;
+
+    // Fetch last 5 runs
+    const runsResp = await fetch(`https://www.speedrun.com/api/v1/runs?user=${userId}&max=5&orderby=submitted&direction=desc`);
+    const runsData = await runsResp.json();
+
+    runsList.innerHTML = ""; // clear old content
+
+    for (const run of runsData.data) {
+      // Fetch game name
+      const gameResp = await fetch(`https://www.speedrun.com/api/v1/games/${run.game}`);
+      const gameData = await gameResp.json();
+      const gameName = gameData.data.names.international;
+
+      // Format date
+      const runDate = new Date(run.submitted).toLocaleDateString();
+
+      // Create list item
+      const li = document.createElement("li");
+      li.innerHTML = `<a href="${run.weblink}" target="_blank">${gameName} - submitted on ${runDate}</a>`;
+      runsList.appendChild(li);
+    }
+
+  } catch (err) {
+    console.error("Error fetching last runs:", err);
+    runsList.innerHTML = "<li>Unable to load last runs.</li>";
+  }
+}
+
+fetchLastRuns();
+</script>
+
+	 
   <footer>
     <p>&copy; 2025 Anakama - All rights reserved.</p>
   </footer>
