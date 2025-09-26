@@ -1,1 +1,1 @@
-<img width="578" height="152" alt="lol" src="https://github.com/user-attachments/assets/452757c4-c3c3-43bc-8a89-e8840e81975f" />
+<img width="590" height="164" alt="Just go" src="https://github.com/user-attachments/assets/5d90335f-755a-412b-b971-a2b780216f2a" />
