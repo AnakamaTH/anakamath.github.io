@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", async () => {
   const username = "Anakama"; 
   const runsGrid = document.getElementById("runs-grid");
-  const allowedGames = ["v1p4rp18", "v1po9o76", "3693226l"];
+  const allowedGames = ["v1p4rp18", "v1po9o76", "3693226l", "o1y38jo6"];
 
   try {
     const userResp = await fetch(`https://www.speedrun.com/api/v1/users/${username}`);
