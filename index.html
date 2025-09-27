@@ -23,6 +23,7 @@
 
   <link rel="stylesheet" href="run.css" />
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="music.css" />
 </head>
 <body>
   <header>  
@@ -47,7 +48,20 @@
       <h2>Recent Runs</h2>
       <div id="runs-grid" class="runs-grid"></div>
     </section>
-    
+
+      <main>
+    <section id="player">
+      <h1>My Music</h1>
+
+      <div class="track">
+        <h2>Unknown Boss Theme</h2>
+        <button class="play" data-file="unknown-boss-theme.flac">Play</button>
+        <button class="pause" data-file="unknown-boss-theme.flac">Pause</button>
+        <span class="time" data-file="unknown-boss-theme.flac">00:00 / 00:00</span>
+      </div>
+    </section>
+  </main>
+  
 <style>
 footer {
   width: 100%;
