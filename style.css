@@ -546,16 +546,3 @@ footer {
   position: relative;
   left: 0;
 }
-
-.runtypeverified {
-  color: #008000; 
-  text-decoration: none;
-  font-weight: bold;
-}
-
-
-.runtypepending {
-  color: #FFFF00;
-  text-decoration: none;
-  font-weight: bold;
-}
