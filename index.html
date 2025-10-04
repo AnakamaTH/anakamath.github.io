@@ -7,16 +7,15 @@
   <link rel="icon" href="assets/favicon.png" type="image/png" />
   
   <!-- Social Media Meta -->
-  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="anakamath.github.io" />
+  <meta property="og:url" content="https://anakamath.github.io" />
   <meta property="og:title" content="Anakama's Official Personal Website for stuff that he makes!" />
   <meta property="og:description" content="Anakama Official Website" />
   <meta property="og:image" content="https://anakamath.github.io/assets/og-image.png" />
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:url" content="anakamath.github.io" />
+  <meta property="twitter:url" content="https://anakamath.github.io" />
   <meta property="twitter:title" content="Anakama Official Website" />
   <meta property="twitter:description" content="Anakama(TH) Official Website | Main Page" />
   <meta property="twitter:image" content="https://anakamath.github.io/assets/og-image.png" />
@@ -44,11 +43,33 @@
         <h2>About Me</h2>
       <p>I make speedruns, music, batch scripts, mods, romhacks and fangames!</p>
     </section>
-  </main>
   
   <footer>
     <p>&copy; 2025 Anakama - All rights reserved.</p>
   </footer>
 
+  <script>
+    function notifyMe() {
+      if (!("Notification" in window)) {
+        alert("This browser does not support system notifications.");
+      } 
+      else if (Notification.permission === "granted") {
+        new Notification("Hey from Anakama!", {
+          body: "Thanks for visiting my website!",
+          icon: "assets/favicon.png"
+        });
+      } 
+      else if (Notification.permission !== "denied") {
+        Notification.requestPermission().then(permission => {
+          if (permission === "granted") {
+            new Notification("Notifications enabled!", {
+              body: "You’ll now receive updates about Anakama and his projects, like this!.",
+              icon: "assets/favicon.png"
+            });
+          }
+        });
+      }
+    }
+  </script>
 </body>
 </html>
