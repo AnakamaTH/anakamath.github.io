@@ -49,29 +49,5 @@
 <footer>
     <p>&copy; 2025 Anakama - All rights reserved.</p>
   </footer>
- 
-  <script>
-    function notifyMe() {
-      if (!("Notification" in window)) {
-        alert("This browser does not support system notifications.");
-      } 
-      else if (Notification.permission === "granted") {
-        new Notification("Hey from Anakama!", {
-          body: "Thanks for visiting my website!",
-          icon: "assets/favicon.png"
-        });
-      } 
-      else if (Notification.permission !== "denied") {
-        Notification.requestPermission().then(permission => {
-          if (permission === "granted") {
-            new Notification("Notifications enabled!", {
-              body: "You’ll now receive updates about Anakama and his projects, like this!.",
-              icon: "assets/favicon.png"
-            });
-          }
-        });
-      }
-    }
-  </script>
 </body>
 </html>
