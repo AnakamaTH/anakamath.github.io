@@ -546,3 +546,42 @@ footer {
   position: relative;
   left: 0;
 }
+
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    align-items: center;      /* centers logo */
+    justify-content: center;
+    gap: 0.8rem;
+    padding: 1rem;
+  }
+
+  header .logo {
+    margin-bottom: 0.5rem;    /* spacing above nav */
+    text-align: center;
+    width: 100%;
+  }
+
+  header nav {
+    position: static;         /* stop absolute centering */
+    transform: none;
+    width: 100%;              /* full width nav */
+    display: flex;
+    justify-content: center;  /* center nav items */
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+
+  nav a {
+    background: var(--accent);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    color: #fff;
+    flex: 1 1 auto;           /* make buttons responsive */
+    text-align: center;
+  }
+
+  nav a:hover {
+    background-color: #27ae60;
+  }
+}
