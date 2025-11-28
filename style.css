@@ -587,13 +587,13 @@ footer {
 }
 
 .link {
-  color: #2ecc71;           /* your accent green */
+  color: #2ecc71;          
   font-weight: 700;
   text-decoration: none;
   transition: 0.2s;
 }
 
 .link:hover {
-  color: #27ae60;           /* darker hover */
+  color: #27ae60;           
   text-decoration: underline;
 }
