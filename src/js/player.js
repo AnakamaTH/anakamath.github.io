@@ -1,24 +1,25 @@
-const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-let buffer, source, startTime, pausedAt = 0;
+document.querySelectorAll('.track').forEach(track => {
+  const file = track.dataset.file;
+  const audio = track.querySelector("audio");
+  const playBtn = track.querySelector(".play");
+  const pauseBtn = track.querySelector(".pause");
+  const timeDisplay = track.querySelector(".time");
 
-async function loadAudio(url) {
-  const res = await fetch(url);
-  const arr = await res.arrayBuffer();
-  buffer = await audioCtx.decodeAudioData(arr);
-}
+  audio.src = file;
 
-async function play(url) {
-  if (!buffer) await loadAudio(url);
+  playBtn.onclick = () => audio.play();
+  pauseBtn.onclick = () => audio.pause();
 
-  source = audioCtx.createBufferSource();
-  source.buffer = buffer;
-  source.connect(audioCtx.destination);
+  audio.addEventListener("timeupdate", () => {
+    const cur = format(audio.currentTime);
+    const dur = format(audio.duration || 0);
+    timeDisplay.textContent = `${cur} / ${dur}`;
+  });
+});
 
-  startTime = audioCtx.currentTime - pausedAt;
-  source.start(0, pausedAt);
-}
-
-function pause() {
-  if (source) source.stop();
-  pausedAt = audioCtx.currentTime - startTime;
+function format(sec) {
+  if (!sec) return "00:00";
+  const m = Math.floor(sec / 60);
+  const s = Math.floor(sec % 60);
+  return `${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;
 }
