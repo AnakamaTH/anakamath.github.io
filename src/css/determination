@@ -1,0 +1,33 @@
+    @font-face {
+      font-family: 'Determination Mono';
+      src: url('https://anakama.xyz/assets/DeterminationMonoWeb.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    body {
+      background: black;
+      color: white;
+      font-family: 'Determination Mono', monospace;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      gap: 10px;
+    } 
+
+    .box {
+      border: 2px solid white;
+      padding: 20px;
+      width: 500px;         
+      text-align: center;
+      font-size: 1.4rem;
+      box-sizing: border-box;
+    }
+
+    .red {
+      color: red;
+      font-weight: bold;
+    }
