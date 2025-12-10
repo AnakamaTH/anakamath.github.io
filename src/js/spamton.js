@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const boxes = document.querySelectorAll(".box");
-  const voice = new Audio("assets/spamton_pitch.wav");
+  const voice = new Audio("assets/spamton.wav");
   voice.volume = 0.4;
 
   async function typeBox(box) {
@@ -14,14 +14,14 @@ document.addEventListener("DOMContentLoaded", () => {
       voice.currentTime = 0;
       voice.play();
 
-      await new Promise(res => setTimeout(res, 110));
+      await new Promise(res => setTimeout(res, 70));
     }
   }
 
   async function playAll() {
     for (let box of boxes) {
       await typeBox(box);
-      await new Promise(res => setTimeout(res, 400));
+      await new Promise(res => setTimeout(res, 300));
     }
   }
 
