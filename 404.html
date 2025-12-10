@@ -1,91 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>‎‎*‎</title>
-  <link rel="stylesheet" href="https://cartr.gitlab.io/undertale-fonts/style.css" />
-  <link rel="icon" href="assets/SOUL.png" type="image/png" />
-  <style>
-    @font-face {
-      font-family: 'Determination Mono';
-      src: url('https://anakama.xyz/assets/DeterminationMonoWeb.woff') format('woff');
-      font-weight: normal;
-      font-style: normal;
-    }
-    html, body {
-      height: 100%;
-      margin: 0;
-      background-color: black;
-      color: white;
-      font-family: 'Determination Mono', monospace;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      text-align: center;
-      overflow: hidden;
-    }
-    h1 { font-size: 2.5rem; margin-bottom: 1rem; }
-    h2 { font-size: 1.2rem; margin-bottom: 2rem; }
-    canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 9999;
-      pointer-events: none;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>‎‎*‎</title>
+<link rel="stylesheet" href="https://cartr.gitlab.io/undertale-fonts/style.css" />
+<link rel="icon" href="assets/SOUL.png" type="image/png" />
+<link rel="stylesheet" href="src/css/404.css" />
 </head>
-<body>  
-  <main>
-    <h1>404</h1>
-    <h2>* You scream for help.</h2>
-    <h2>* But nobody came.</h2>
-  </main>
-
-  <canvas id="flashCanvas"></canvas>
-
-  <script>
-    const canvas = document.getElementById("flashCanvas");
-    const ctx = canvas.getContext("2d");
-
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    function undertaleFlash() {
-      const centerX = canvas.width / 2;
-      const centerY = canvas.height / 2;
-      let maxRadius = Math.sqrt(centerX**2 + centerY**2);
-      let radius = 0;
-
-      function draw() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = "white";
-
-        for (let r = 0; r < radius; r += 12) {
-          ctx.fillRect(centerX - r, centerY - r, r*2, r*2);
-        }
-
-        radius += 40;
-
-        if (radius < maxRadius) {
-          requestAnimationFrame(draw);
-        } else {
-          ctx.clearRect(0, 0, canvas.width, canvas.height);
-          window.location.href = "https://anakama.xyz";
-        }
-      }
-
-      draw();
+  
+<body>
+<main>
+<h1>404</h1>
+<h2>* You scream for help.</h2>
+<h2>* But nobody came.</h2>
+</main>
+<canvas id="flashCanvas"></canvas>
+<script>
+const canvas = document.getElementById("flashCanvas");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+function undertaleFlash() {
+  const centerX = canvas.width / 2;
+  const centerY = canvas.height / 2;
+  let maxRadius = Math.sqrt(centerX**2 + centerY**2);
+  let radius = 0;
+  function draw() {
+    ctx.fillStyle = "white";
+    for (let r = 0; r < radius; r += 12) {
+      ctx.fillRect(centerX - r, centerY - r, r*2, r*2);
     }
-
-    setTimeout(undertaleFlash, 3000);
-
-    window.addEventListener('resize', () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    });
-  </script>
+    radius += 40;
+    if (radius < maxRadius) {
+      requestAnimationFrame(draw);
+    } else {
+      window.location.href = "https://anakama.xyz";
+    }
+  }
+  draw();
+}
+setTimeout(undertaleFlash, 3000);
+window.addEventListener('resize', () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+</script>
 </body>
 </html>
