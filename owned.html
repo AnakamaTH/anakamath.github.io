@@ -16,21 +16,21 @@
   <meta name="twitter:image" content="https://anakama.xyz/assets/owned.png" />
 
   <link rel="stylesheet" href="src/css/determination.css" />
-<body>
-<script>
-window.addEventListener("load", () => {
-  const audio = new Audio("assets/owned.ogg");
-  audio.loop = true;
-  audio.autoplay = true;
-  audio.muted = true;
+</head>
 
-  audio.play().then(() => {
-    audio.muted = false;
-  }).catch(err => {
-    console.warn("Autoplay blocked:", err);
+<body>
+  <audio id="owned" src="assets/owned.ogg" loop playsinline></audio>
+
+  <script>
+  window.addEventListener("load", () => {
+    const audio = document.getElementById("owned");
+    audio.muted = true;
+
+    audio.play().then(() => {
+      audio.muted = false;
+    });
   });
-});
-</script>
+  </script
 
 <div class="box">* HEY EV3RY, ITS ME [[Number1RatedSalesman1997]]!</div>
 <div class="box">* IT LOOKS LIKE <span class="red">YOU</span> POSTED A [[Ten*r]] LINK?</div>
