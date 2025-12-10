@@ -18,13 +18,11 @@
   <link rel="stylesheet" href="src/css/determination.css" />
 <body>
   
-  <audio id="spamton-audio" src="assets/spamton.ogg" autoplay playsinline></audio>
+<audio id="spamton-audio" src="assets/spamton.ogg"></audio>
 
 <script>
   document.addEventListener("click", () => {
-    const audio = document.getElementById("spamton-audio");
-    audio.muted = false;
-    audio.play();
+    document.getElementById("spamton-audio").play();
   });
 </script>
 
