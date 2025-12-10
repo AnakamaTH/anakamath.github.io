@@ -18,6 +18,16 @@
   <link rel="stylesheet" href="src/css/determination.css" />
 <body>
   
+  <audio id="spamton-audio" src="assets/spamton.ogg" autoplay playsinline></audio>
+
+<script>
+  document.addEventListener("click", () => {
+    const audio = document.getElementById("spamton-audio");
+    audio.muted = false;
+    audio.play();
+  });
+</script>
+
 <div class="box">* HEY EV3RY, ITS ME [[Number1RatedSalesman1997]]!</div>
 <div class="box">* IT LOOKS LIKE <span class="red">YOU</span> POSTED A [[Ten*r]] LINK?</div>
 <div class="box">* THATS A [[Problem]]</div>
