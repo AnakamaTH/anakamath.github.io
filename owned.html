@@ -18,11 +18,18 @@
   <link rel="stylesheet" href="src/css/determination.css" />
 <body>
 <script>
-setTimeout(() => {
+window.addEventListener("load", () => {
   const audio = new Audio("assets/owned.ogg");
   audio.loop = true;
-  audio.play();
-}, 5);
+  audio.autoplay = true;
+  audio.muted = true;
+
+  audio.play().then(() => {
+    audio.muted = false;
+  }).catch(err => {
+    console.warn("Autoplay blocked:", err);
+  });
+});
 </script>
 
 <div class="box">* HEY EV3RY, ITS ME [[Number1RatedSalesman1997]]!</div>
