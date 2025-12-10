@@ -4,6 +4,23 @@ document.addEventListener("DOMContentLoaded", () => {
   voice.volume = 0.4;
 
   async function typeBox(box) {
+  box.style.visibility = "visible";
+
+  const text = box.textContent.trim();
+  const words = text.split(" ");
+  
+  box.textContent = "";
+  for (let i = 0; i < words.length; i++) {
+    box.textContent += words[i] + " ";
+
+    voice.currentTime = 0;
+    voice.play();
+
+    await new Promise(res => setTimeout(res, 110));
+  }
+}
+
+  async function typeBox(box) {
     const text = box.textContent.trim();
     const words = text.split(" ");
     
