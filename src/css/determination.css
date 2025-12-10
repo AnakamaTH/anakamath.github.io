@@ -21,6 +21,7 @@ body {
 }
 
 .box {
+  visibility: hidden;
   border: 2px solid white;
   padding: 20px;
   width: 500px; 
