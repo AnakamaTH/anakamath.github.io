@@ -17,15 +17,13 @@
 
   <link rel="stylesheet" href="src/css/determination.css" />
 <body>
-  
-<audio id="spamton-audio" src="assets/spamton.ogg"></audio>
-
 <script>
-  document.addEventListener("click", () => {
-    document.getElementById("spamton-audio").play();
-  });
+setTimeout(() => {
+  const audio = new Audio("assets/spamton.ogg");
+  audio.loop = true;
+  audio.play();
+}, 500);
 </script>
-
 <div class="box">* HEY EV3RY, ITS ME [[Number1RatedSalesman1997]]!</div>
 <div class="box">* IT LOOKS LIKE <span class="red">YOU</span> POSTED A [[Ten*r]] LINK?</div>
 <div class="box">* THATS A [[Problem]]</div>
@@ -34,6 +32,7 @@
 <div class="box">* IF YOU WANT TO BE A [[BIG SHOT]] YOU SHOULD STOP POSTING UNRELATED [[Ten*r]] GIFS</div>
 <div class="box">* BE WARNED AND HAVE A [[Okay Day]] KID</div>
 <div class="box">* I WILL [[Comeback]] IF YOU [[Post Unrelated GIFs]]</div>
+
   
 </body>
 </html>
