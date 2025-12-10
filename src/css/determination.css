@@ -1,33 +1,45 @@
-    @font-face {
-      font-family: 'Determination Mono';
-      src: url('https://anakama.xyz/assets/DeterminationMonoWeb.woff') format('woff');
-      font-weight: normal;
-      font-style: normal;
-    }
+@font-face {
+  font-family: 'Determination Mono';
+  src: url('https://anakama.xyz/assets/DeterminationMonoWeb.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
 
-    body {
-      background: black;
-      color: white;
-      font-family: 'Determination Mono', monospace;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      gap: 10px;
-    } 
+body {
+  background: black;
+  color: white;
+  font-family: 'Determination Mono', monospace;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
-    .box {
-      border: 2px solid white;
-      padding: 20px;
-      width: 500px;         
-      text-align: center;
-      font-size: 1.4rem;
-      box-sizing: border-box;
-    }
+  min-height: 100vh;
+  padding: 20px;
+  margin: 0;
+  gap: 10px;
+}
 
-    .red {
-      color: red;
-      font-weight: bold;
-    }
+.box {
+  border: 2px solid white;
+  padding: 20px;
+  width: 500px; 
+  max-width: 100%;      
+  text-align: center;
+  font-size: 1.4rem;
+  box-sizing: border-box;
+}
+  font-size: clamp(1rem, 4vw, 1.4rem);
+  box-sizing: border-box;
+}
+
+.red {
+  color: red;
+  font-weight: bold;
+}
+
+@media (max-width: 400px) {
+  .box {
+    padding: 15px;
+  }
+}
