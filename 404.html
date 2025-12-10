@@ -47,8 +47,6 @@
       background-color: white;
       color: black;
     }
-  </style>
-  <style>
     #flash {
       position: fixed;
       top: 0;
@@ -65,6 +63,28 @@
       0%   { opacity: 1; }
       100% { opacity: 0; }
     }
+  body {
+    margin: 0;
+    background: black;
+    color: white;
+    font-family: monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  main {
+    text-align: center;
+  }
+
+  canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    pointer-events: none;
+  }
   </style>
 </head>
 
@@ -75,17 +95,44 @@
     <h2>* But nobody came.</h2>
   </main>
 
-  <div id="flash"></div>
+  <div id="flashCanvas"></div>
 
   <script>
-    setTimeout(() => {
-      const flash = document.getElementById("flash");
-      flash.style.animation = "undertaleFlash 0.1s linear forwards";
+const canvas = document.getElementById("flashCanvas");
+const ctx = canvas.getContext("2d");
 
-      setTimeout(() => {
-        window.location.href = "https://anakama.xyz";
-      }, 100);
-    }, 3000);
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+function undertaleFlash() {
+  const centerX = canvas.width / 2;
+  const centerY = canvas.height / 2;
+  let maxRadius = Math.sqrt(centerX*centerX + centerY*centerY);
+  let radius = 0;
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "white";
+
+    for (let r = 0; r < radius; r += 10) {
+      ctx.fillRect(centerX - r, centerY - r, r*2, r*2);
+    }
+
+    radius += 30;
+
+    if (radius < maxRadius) {
+      requestAnimationFrame(draw);
+    } else {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      window.location.href = "https://anakama.xyz";
+    }
+  }
+
+  draw();
+}
+
+// Trigger flash after 3 seconds
+setTimeout(undertaleFlash, 3000);
   </script>
 </body>
 </html>
