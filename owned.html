@@ -21,16 +21,24 @@
 <body>
   <audio id="owned" src="assets/owned.ogg" loop playsinline></audio>
 
-  <script>
-  window.addEventListener("load", () => {
-    const audio = document.getElementById("owned");
-    audio.muted = true;
+<body>
+  <audio id="owned" src="assets/owned.ogg" loop></audio>
 
-    audio.play().then(() => {
+  <script>
+    const audio = document.getElementById("owned");
+
+    audio.muted = true;
+    audio.play();
+    
+    const enableSound = () => {
       audio.muted = false;
-    });
-  });
+      document.removeEventListener("click", enableSound);
+    };
+
+    document.addEventListener("click", enableSound);
   </script>
+</body>
+
 
   <div class="box">* HEY EV3RY, ITS ME [[Number1RatedSalesman1997]]!</div>
   <div class="box">* IT LOOKS LIKE <span class="red">YOU</span> POSTED A [[Ten*r]] LINK?</div>
