@@ -31,11 +31,10 @@
   <script>
     const audio = document.getElementById("owned");
     const startLayer = document.getElementById("clickstart");
-    audio.muted = true;
-    audio.play();
     
     const enableSound = () => {
       audio.muted = false;
+      audio.play();
       startLayer.remove();
       document.removeEventListener("click", enableSound);
     };
