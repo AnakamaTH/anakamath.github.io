@@ -20,25 +20,28 @@
 
 <body>
   <audio id="owned" src="assets/owned.ogg" loop playsinline></audio>
-
-<body>
-  <audio id="owned" src="assets/owned.ogg" loop></audio>
+  
+  <div id="clickstart" style="
+      position:fixed;
+      inset:0;
+      z-index:9999;
+      cursor:pointer;
+    "></div>
 
   <script>
     const audio = document.getElementById("owned");
-
+    const startLayer = document.getElementById("clickstart");
     audio.muted = true;
     audio.play();
     
     const enableSound = () => {
       audio.muted = false;
+      startLayer.remove();
       document.removeEventListener("click", enableSound);
     };
 
     document.addEventListener("click", enableSound);
   </script>
-</body>
-
 
   <div class="box">* HEY EV3RY, ITS ME [[Number1RatedSalesman1997]]!</div>
   <div class="box">* IT LOOKS LIKE <span class="red">YOU</span> POSTED A [[Ten*r]] LINK?</div>
