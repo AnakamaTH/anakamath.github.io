@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -15,8 +15,10 @@
   <meta name="twitter:title" content="Owned." />
   <meta name="twitter:image" content="https://anakama.xyz/assets/ralsei-says-okay.png" />
   <link rel="stylesheet" href="src/css/determination.css" />
-  
-  <style>
+ </head>
+<main>
+<body>
+<style>
 .center-image {
   position: fixed;
   top: 50%;
@@ -33,36 +35,59 @@
   height: auto;
   z-index: 1;
 }
-</style>
-</head>
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-<body>
+  .image-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px; /* space between images */
+  }
 
-  <img
-  src="assets/spr_gameoverbg.png"
-  alt="The Game Over screen's background from UNDERTALE."
-  class="top-image"
-/>
+  .image-stack img {
+    max-width: 90vw;
+    height: auto;
+    user-select: none;
+    pointer-events: none;
+  }
+  @media (min-width: 768px) {
+    .image-stack img {
+      max-width: 600px;
+    }
+  }
+</style> 
 
-   <img
-  src="assets/ralsei-says-okay.png"
-  alt="Okay."
-  class="center-image"
-/> 
-  
+  <div class="image-stack">
+    <img
+      src="assets/spr_gameoverbg.png"
+      alt="The Game Over screen's background from UNDERTALE."
+    />
+
+    <img
+      src="assets/ralsei-says-okay.png"
+      alt="Okay."
+    />
+  </div>
+
   <audio id="owned" src="assets/gameover_short.ogg" loop playsinline></audio>
-  
+
   <div id="clickstart" style="
-      position:fixed;
-      inset:0;
-      z-index:9999;
-      cursor:pointer;
-    "></div>
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    cursor:pointer;
+  "></div>
 
   <script>
     const audio = document.getElementById("owned");
     const startLayer = document.getElementById("clickstart");
-    
+
     const enableSound = () => {
       audio.muted = false;
       audio.play();
@@ -73,6 +98,5 @@
     document.addEventListener("click", enableSound);
   </script>
 
-  
 </body>
-</html>
+</main>
