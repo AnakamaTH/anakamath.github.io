@@ -593,6 +593,12 @@ footer {
   transition: 0.2s;
 }
 
+    .modrinth-icon {
+      width: 40px;
+      height: 40px;
+      fill: #1BD96A;
+    }
+
 .link:hover {
   color: #27ae60;           
   text-decoration: underline;
