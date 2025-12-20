@@ -230,3 +230,9 @@ body.dark button.card {
 button.card:hover {
   border-color: var(--accent);
 }
+
+.link {
+  color: #0f73ff;
+  text-decoration: none;
+  transition: 0.2s;
+}
