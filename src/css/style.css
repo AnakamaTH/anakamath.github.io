@@ -96,6 +96,10 @@ a:hover {
   text-decoration: underline;
 }
 
+#projects h2 {
+  margin-top: 1.5rem;
+}
+
 .project-list {
   list-style: none;
   padding-left: 0;
