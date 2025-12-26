@@ -240,3 +240,17 @@ button.card:hover {
   text-decoration: none;
   transition: 0.2s;
 }
+
+.quote {
+  border-left: 4px solid #444;
+  padding: 0.5em 0.8em;
+  margin: 0.5em 0;
+  background: rgba(0, 0, 0, 0.05);
+  font-style: italic;
+}
+
+.quote footer {
+  margin-top: 0.4em;
+  font-size: 0.9em;
+  color: #666;
+}
