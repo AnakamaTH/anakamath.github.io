@@ -2,3 +2,31 @@
   const path = window.location.pathname + window.location.search + window.location.hash;
   window.location.replace("https://anakama.xyz" + path);
 </script>
+
+<noscript>
+  <div class="no-js-warning">
+    <p><strong>JavaScript is disabled.</strong></p>
+    <p>This site is avalible on <a href="https://anakama.xyz">anakama.xyz</a>.</p>
+    <p>Please manually go there.</p>
+  </div>
+</noscript>
+<style>
+.no-js-warning {
+  max-width: 640px;
+  margin: 2rem auto;
+  padding: 1.25rem 1.5rem;
+  border-left: 4px solid #e5533d;
+  background-color: #fff5f2;
+  color: #5a1d14;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  border-radius: 4px;
+}
+
+.no-js-warning strong {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+}
+</style>
